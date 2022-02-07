@@ -1,0 +1,53 @@
+{
+  "name" : "PROFILER-ApproxDistinctCount",
+  "datasources" : [ {
+    "name" : "GDW_TABLES.DW_LSTG_ITEM",
+    "type" : "batch.table",
+    "config" : {
+      "tableName" : "GDW_TABLES.DW_LSTG_ITEM"
+    }
+  } ],
+  "rules" : [ {
+    "name" : "default_rule",
+    "type" : "batch.profiler",
+    "config" : {
+      "schedule_type" : "d",
+      "custom_key" : "custom_value"
+    },
+    "profilers" : [ {
+      "metric-name" : "SLR_SITE_ID-ApproxCountDistinct",
+      "expression" : {
+        "operator" : "ApproxCountDistinct",
+        "config" : {
+          "column" : "SLR_SITE_ID"
+        }
+      }
+    }, {
+      "metric-name" : "THEME_ID-ApproxCountDistinct",
+      "expression" : {
+        "operator" : "ApproxCountDistinct",
+        "config" : {
+          "column" : "THEME_ID"
+        }
+      }
+    }, {
+      "metric-name" : "ITEM_SITE_ID-ApproxCountDistinct",
+      "expression" : {
+        "operator" : "ApproxCountDistinct",
+        "config" : {
+          "column" : "ITEM_SITE_ID"
+        }
+      }
+    } ]
+  } ],
+  "sinks" : [ {
+    "name" : "es-sink",
+    "type" : "batch.elasticsearch",
+    "config" : {
+      "endpoint" : "https://estdq-datalvs.vip.ebay.com",
+      "password" : "1tIU7GQSADe4bCGGifWLfYYJSZGA8Szlc3ZWDMnd3gMhk43XPLUpw9Mv5viYQZ73",
+      "index-prefix" : "profiling-qa-",
+      "username" : "76361a1177564b72bdba1ddb23d17c58"
+    }
+  } ]
+}

@@ -1,0 +1,37 @@
+{
+  "name" : "PROFILER-DW_USERS_INFO-user_cre_week_id",
+  "datasources" : [ {
+    "name" : "GDW_TABLES.DW_USERS_INFO",
+    "type" : "batch.table",
+    "config" : {
+      "tableName" : "GDW_TABLES.DW_USERS_INFO"
+    }
+  } ],
+  "rules" : [ {
+    "name" : "default_rule",
+    "type" : "batch.profiler",
+    "config" : {
+      "schedule_type" : "d",
+      "custom_key" : "custom_value"
+    },
+    "profilers" : [ {
+      "metric-name" : "USER_CRE_WEEK_ID-Uniqueness",
+      "expression" : {
+        "operator" : "Uniqueness",
+        "config" : {
+          "column" : "USER_CRE_WEEK_ID"
+        }
+      }
+    } ]
+  } ],
+  "sinks" : [ {
+    "name" : "es-sink",
+    "type" : "batch.elasticsearch",
+    "config" : {
+      "endpoint" : "https://esdataprofiler-datarno.vip.ebay.com",
+      "password" : "2020MakeItHappen$ToTBZ",
+      "index-prefix" : "profiling-qa-",
+      "username" : "_DATAQUALITY_ES01"
+    }
+  } ]
+}

@@ -1,0 +1,157 @@
+{
+  "name" : "PROFILER-DW_USERS_INFO-1",
+  "datasources" : [ {
+    "name" : "GDW_TABLES.DW_USERS_INFO",
+    "type" : "batch.table",
+    "config" : {
+      "tableName" : "GDW_TABLES.DW_USERS_INFO"
+    }
+  } ],
+  "rules" : [ {
+    "name" : "default_rule",
+    "type" : "batch.profiler",
+    "config" : {
+      "schedule_type" : "d",
+      "custom_key" : "custom_value"
+    },
+    "profilers" : [ {
+      "metric-name" : "GENDER_MFU-MaxLength",
+      "expression" : {
+        "operator" : "MaxLength",
+        "config" : {
+          "column" : "GENDER_MFU"
+        }
+      }
+    }, {
+      "metric-name" : "GENDER_MFU-MinLength",
+      "expression" : {
+        "operator" : "MinLength",
+        "config" : {
+          "column" : "GENDER_MFU"
+        }
+      }
+    }, {
+      "metric-name" : "GOOD_CRD_YN-MaxLength",
+      "expression" : {
+        "operator" : "MaxLength",
+        "config" : {
+          "column" : "GOOD_CRD_YN"
+        }
+      }
+    }, {
+      "metric-name" : "GOOD_CRD_YN-MinLength",
+      "expression" : {
+        "operator" : "MinLength",
+        "config" : {
+          "column" : "GOOD_CRD_YN"
+        }
+      }
+    }, {
+      "metric-name" : "BANNER_PRTNR_ID-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "BANNER_PRTNR_ID"
+        }
+      }
+    }, {
+      "metric-name" : "BANNER_PRTNR_ID-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "BANNER_PRTNR_ID"
+        }
+      }
+    }, {
+      "metric-name" : "BANNER_PRTNR_ID-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "BANNER_PRTNR_ID"
+        }
+      }
+    }, {
+      "metric-name" : "BLNG_CURNCY_ID-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "BLNG_CURNCY_ID"
+        }
+      }
+    }, {
+      "metric-name" : "BLNG_CURNCY_ID-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "BLNG_CURNCY_ID"
+        }
+      }
+    }, {
+      "metric-name" : "BLNG_CURNCY_ID-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "BLNG_CURNCY_ID"
+        }
+      }
+    }, {
+      "metric-name" : "COBRAND_PRTNR_ID-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "COBRAND_PRTNR_ID"
+        }
+      }
+    }, {
+      "metric-name" : "COBRAND_PRTNR_ID-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "COBRAND_PRTNR_ID"
+        }
+      }
+    }, {
+      "metric-name" : "COBRAND_PRTNR_ID-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "COBRAND_PRTNR_ID"
+        }
+      }
+    }, {
+      "metric-name" : "EQUIFAX_ATTEMPTS-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "EQUIFAX_ATTEMPTS"
+        }
+      }
+    }, {
+      "metric-name" : "EQUIFAX_ATTEMPTS-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "EQUIFAX_ATTEMPTS"
+        }
+      }
+    }, {
+      "metric-name" : "EQUIFAX_ATTEMPTS-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "EQUIFAX_ATTEMPTS"
+        }
+      }
+    } ]
+  } ],
+  "sinks" : [ {
+    "name" : "es-sink",
+    "type" : "batch.elasticsearch",
+    "config" : {
+      "endpoint" : "https://esdataprofiler-datarno.vip.ebay.com",
+      "password" : "2020MakeItHappen$ToTBZ",
+      "index-prefix" : "profiling-qa-",
+      "username" : "_DATAQUALITY_ES01"
+    }
+  } ]
+}

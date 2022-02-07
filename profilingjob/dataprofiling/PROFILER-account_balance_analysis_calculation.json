@@ -1,0 +1,57 @@
+{
+  "name" : "PROFILER-ubi_t.ubi_event_analysis_calculation",
+  "datasources" : [ {
+    "name" : "ubi_t.ubi_event_ANALYSIS_CALCULATION",
+    "type" : "batch.table",
+    "config" : {
+      "tableName" : "ubi_t.ubi_event_ANALYSIS_CALCULATION"
+    }
+  } ],
+  "rules" : [ {
+    "name" : "default_rule",
+    "type" : "batch.profiler",
+    "config" : {
+      "schedule_type" : "hour",
+      "custom_key" : "custom_value"
+    },
+    "profilers" : [ 
+      {
+      "metric-name" : "ubi_t-page-sum",
+      "dismension":["page_id"],
+      "expressions" : [ 
+        {
+        "expr": "pageID",
+        "alias": "page_id"
+        },
+        {
+          "expr": "count(1)",
+          "alias": "page_total_cnt"
+        }
+      ]
+     }, 
+     {
+      "metric-name" : "ubi_t-tag-sum",
+      "dismension":["tag_v"],
+      "expressions" : [ 
+        {
+        "expr": "tag",
+        "alias": "tag_v"
+        },
+        {
+          "expr": "count(1)",
+          "alias": "tag_total_cnt"
+        }
+      ]
+     }]
+  } ],
+  "sinks" : [ {
+    "name" : "es-sink",
+    "type" : "batch.elasticsearch",
+    "config" : {
+      "endpoint" : "https://estdq-datalvs.vip.ebay.com",
+      "password" : "1tIU7GQSADe4bCGGifWLfYYJSZGA8Szlc3ZWDMnd3gMhk43XPLUpw9Mv5viYQZ73",
+      "index-prefix" : "profiling-qa-",
+      "username" : "76361a1177564b72bdba1ddb23d17c58"
+    }
+  } ]
+}

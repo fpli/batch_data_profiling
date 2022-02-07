@@ -1,0 +1,349 @@
+{
+  "name" : "PROFILER-ApproxDistinctCount-ALL",
+  "datasources" : [ {
+    "name" : "GDW_TABLES.DW_LSTG_ITEM",
+    "type" : "batch.table",
+    "config" : {
+      "tableName" : "GDW_TABLES.DW_LSTG_ITEM"
+    }
+  } ],
+  "rules" : [ {
+    "name" : "default_rule",
+    "type" : "batch.profiler",
+    "config" : {
+      "schedule_type" : "d",
+      "custom_key" : "custom_value"
+    },
+    "profilers" : [ {
+      "metric-name" : "APPLICATION_ID-ApproxCountDistinct",
+      "expression" : {
+        "operator" : "ApproxCountDistinct",
+        "config" : {
+          "column" : "APPLICATION_ID"
+        }
+      }
+    }, {
+      "metric-name" : "AUCT_END_EXCHNG_RATE-ApproxCountDistinct",
+      "expression" : {
+        "operator" : "ApproxCountDistinct",
+        "config" : {
+          "column" : "AUCT_END_EXCHNG_RATE"
+        }
+      }
+    }, {
+      "metric-name" : "AUCT_START_EXCHNG_RATE-ApproxCountDistinct",
+      "expression" : {
+        "operator" : "ApproxCountDistinct",
+        "config" : {
+          "column" : "AUCT_START_EXCHNG_RATE"
+        }
+      }
+    }, {
+      "metric-name" : "AUCT_TITL-ApproxCountDistinct",
+      "expression" : {
+        "operator" : "ApproxCountDistinct",
+        "config" : {
+          "column" : "AUCT_TITL"
+        }
+      }
+    }, {
+      "metric-name" : "AUCT_TYPE_CODE-ApproxCountDistinct",
+      "expression" : {
+        "operator" : "ApproxCountDistinct",
+        "config" : {
+          "column" : "AUCT_TYPE_CODE"
+        }
+      }
+    }, {
+      "metric-name" : "BIDCOUNT-ApproxCountDistinct",
+      "expression" : {
+        "operator" : "ApproxCountDistinct",
+        "config" : {
+          "column" : "BIDCOUNT"
+        }
+      }
+    }, {
+      "metric-name" : "BIN_PRICE_LSTG_CURNCY-ApproxCountDistinct",
+      "expression" : {
+        "operator" : "ApproxCountDistinct",
+        "config" : {
+          "column" : "BIN_PRICE_LSTG_CURNCY"
+        }
+      }
+    }, {
+      "metric-name" : "BOLD_TITLE-ApproxCountDistinct",
+      "expression" : {
+        "operator" : "ApproxCountDistinct",
+        "config" : {
+          "column" : "BOLD_TITLE"
+        }
+      }
+    }, {
+      "metric-name" : "CRE_USER-ApproxCountDistinct",
+      "expression" : {
+        "operator" : "ApproxCountDistinct",
+        "config" : {
+          "column" : "CRE_USER"
+        }
+      }
+    }, {
+      "metric-name" : "CURNT_PRICE_LSTG_CURNCY-ApproxCountDistinct",
+      "expression" : {
+        "operator" : "ApproxCountDistinct",
+        "config" : {
+          "column" : "CURNT_PRICE_LSTG_CURNCY"
+        }
+      }
+    }, {
+      "metric-name" : "CUST_REF_CODE-ApproxCountDistinct",
+      "expression" : {
+        "operator" : "ApproxCountDistinct",
+        "config" : {
+          "column" : "CUST_REF_CODE"
+        }
+      }
+    }, {
+      "metric-name" : "FEATURED-ApproxCountDistinct",
+      "expression" : {
+        "operator" : "ApproxCountDistinct",
+        "config" : {
+          "column" : "FEATURED"
+        }
+      }
+    }, {
+      "metric-name" : "GALLERY_URL-ApproxCountDistinct",
+      "expression" : {
+        "operator" : "ApproxCountDistinct",
+        "config" : {
+          "column" : "GALLERY_URL"
+        }
+      }
+    }, {
+      "metric-name" : "GLRY_STATE-ApproxCountDistinct",
+      "expression" : {
+        "operator" : "ApproxCountDistinct",
+        "config" : {
+          "column" : "GLRY_STATE"
+        }
+      }
+    }, {
+      "metric-name" : "GLRY_TYPE_ID-ApproxCountDistinct",
+      "expression" : {
+        "operator" : "ApproxCountDistinct",
+        "config" : {
+          "column" : "GLRY_TYPE_ID"
+        }
+      }
+    }, {
+      "metric-name" : "GMS_DUTCH_LSTG_CURNCY-ApproxCountDistinct",
+      "expression" : {
+        "operator" : "ApproxCountDistinct",
+        "config" : {
+          "column" : "GMS_DUTCH_LSTG_CURNCY"
+        }
+      }
+    }, {
+      "metric-name" : "GMS_LSTG_CURNCY_EST-ApproxCountDistinct",
+      "expression" : {
+        "operator" : "ApproxCountDistinct",
+        "config" : {
+          "column" : "GMS_LSTG_CURNCY_EST"
+        }
+      }
+    }, {
+      "metric-name" : "FLAGS-ApproxCountDistinct",
+      "expression" : {
+        "operator" : "ApproxCountDistinct",
+        "config" : {
+          "column" : "FLAGS"
+        }
+      }
+    }, {
+      "metric-name" : "GMS_LSTG_CURNCY-ApproxCountDistinct",
+      "expression" : {
+        "operator" : "ApproxCountDistinct",
+        "config" : {
+          "column" : "GMS_LSTG_CURNCY"
+        }
+      }
+    }, {
+      "metric-name" : "WEIGHT-ApproxCountDistinct",
+      "expression" : {
+        "operator" : "ApproxCountDistinct",
+        "config" : {
+          "column" : "WEIGHT"
+        }
+      }
+    }, {
+      "metric-name" : "WATCH_CNT-ApproxCountDistinct",
+      "expression" : {
+        "operator" : "ApproxCountDistinct",
+        "config" : {
+          "column" : "WATCH_CNT"
+        }
+      }
+    }, {
+      "metric-name" : "WACKO_YN-ApproxCountDistinct",
+      "expression" : {
+        "operator" : "ApproxCountDistinct",
+        "config" : {
+          "column" : "WACKO_YN"
+        }
+      }
+    }, {
+      "metric-name" : "VISITCOUNT-ApproxCountDistinct",
+      "expression" : {
+        "operator" : "ApproxCountDistinct",
+        "config" : {
+          "column" : "VISITCOUNT"
+        }
+      }
+    }, {
+      "metric-name" : "UPD_USER-ApproxCountDistinct",
+      "expression" : {
+        "operator" : "ApproxCountDistinct",
+        "config" : {
+          "column" : "UPD_USER"
+        }
+      }
+    }, {
+      "metric-name" : "TAX_NEW_STATE-ApproxCountDistinct",
+      "expression" : {
+        "operator" : "ApproxCountDistinct",
+        "config" : {
+          "column" : "TAX_NEW_STATE"
+        }
+      }
+    }, {
+      "metric-name" : "TAX_NEW-ApproxCountDistinct",
+      "expression" : {
+        "operator" : "ApproxCountDistinct",
+        "config" : {
+          "column" : "TAX_NEW"
+        }
+      }
+    }, {
+      "metric-name" : "SUBTITLE-ApproxCountDistinct",
+      "expression" : {
+        "operator" : "ApproxCountDistinct",
+        "config" : {
+          "column" : "SUBTITLE"
+        }
+      }
+    }, {
+      "metric-name" : "PRODUCT_ID-ApproxCountDistinct",
+      "expression" : {
+        "operator" : "ApproxCountDistinct",
+        "config" : {
+          "column" : "PRODUCT_ID"
+        }
+      }
+    }, {
+      "metric-name" : "SUPER_FEATURED-ApproxCountDistinct",
+      "expression" : {
+        "operator" : "ApproxCountDistinct",
+        "config" : {
+          "column" : "SUPER_FEATURED"
+        }
+      }
+    }, {
+      "metric-name" : "SUCCESS_YN-ApproxCountDistinct",
+      "expression" : {
+        "operator" : "ApproxCountDistinct",
+        "config" : {
+          "column" : "SUCCESS_YN"
+        }
+      }
+    }, {
+      "metric-name" : "STOREFRONT_FLAGS-ApproxCountDistinct",
+      "expression" : {
+        "operator" : "ApproxCountDistinct",
+        "config" : {
+          "column" : "STOREFRONT_FLAGS"
+        }
+      }
+    }, {
+      "metric-name" : "START_PRICE_LSTG_CURNCY-ApproxCountDistinct",
+      "expression" : {
+        "operator" : "ApproxCountDistinct",
+        "config" : {
+          "column" : "START_PRICE_LSTG_CURNCY"
+        }
+      }
+    }, {
+      "metric-name" : "SLR_PRDCT_ID_TXT-ApproxCountDistinct",
+      "expression" : {
+        "operator" : "ApproxCountDistinct",
+        "config" : {
+          "column" : "SLR_PRDCT_ID_TXT"
+        }
+      }
+    }, {
+      "metric-name" : "SKU_NUM-ApproxCountDistinct",
+      "expression" : {
+        "operator" : "ApproxCountDistinct",
+        "config" : {
+          "column" : "SKU_NUM"
+        }
+      }
+    }, {
+      "metric-name" : "SHIP_REGN_FLAGS-ApproxCountDistinct",
+      "expression" : {
+        "operator" : "ApproxCountDistinct",
+        "config" : {
+          "column" : "SHIP_REGN_FLAGS"
+        }
+      }
+    }, {
+      "metric-name" : "SALE_STATUS-ApproxCountDistinct",
+      "expression" : {
+        "operator" : "ApproxCountDistinct",
+        "config" : {
+          "column" : "SALE_STATUS"
+        }
+      }
+    }, {
+      "metric-name" : "STOCK_PHOTO_USED_YN-ApproxCountDistinct",
+      "expression" : {
+        "operator" : "ApproxCountDistinct",
+        "config" : {
+          "column" : "STOCK_PHOTO_USED_YN"
+        }
+      }
+    }, {
+      "metric-name" : "PAYMENT_MONEYXFER-ApproxCountDistinct",
+      "expression" : {
+        "operator" : "ApproxCountDistinct",
+        "config" : {
+          "column" : "PAYMENT_MONEYXFER"
+        }
+      }
+    }, {
+      "metric-name" : "SHIPPING_FEE-ApproxCountDistinct",
+      "expression" : {
+        "operator" : "ApproxCountDistinct",
+        "config" : {
+          "column" : "SHIPPING_FEE"
+        }
+      }
+    }, {
+      "metric-name" : "RELISTID-ApproxCountDistinct",
+      "expression" : {
+        "operator" : "ApproxCountDistinct",
+        "config" : {
+          "column" : "RELISTID"
+        }
+      }
+    } ]
+  } ],
+  "sinks" : [ {
+    "name" : "es-sink",
+    "type" : "batch.elasticsearch",
+    "config" : {
+      "endpoint" : "https://esdataprofiler-datarno.vip.ebay.com",
+      "password" : "2020MakeItHappen$ToTBZ",
+      "index-prefix" : "profiling-qa-",
+      "username" : "_DATAQUALITY_ES01"
+    }
+  } ]
+}

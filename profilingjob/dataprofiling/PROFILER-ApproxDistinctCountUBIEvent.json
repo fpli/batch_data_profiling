@@ -1,0 +1,46 @@
+{
+  "name" : "PROFILER-ApproxDistinctCountUBIEvent",
+  "datasources" : [ {
+    "name" : "UBI_T.UBI_EVENT",
+    "type" : "batch.table",
+    "config" : {
+      "tableName" : "UBI_T.UBI_EVENT",
+      "dateFilter": {
+        "ago": 4,
+        "duration": 3,
+        "time_unit": "h",
+        "date_format": "yyyyMMdd HH:mm:ss",
+        "filter_clause": "dt='20220122'"
+      }
+    }
+  } ],
+  "rules" : [ {
+    "name" : "default_rule",
+    "type" : "batch.profiler",
+    "config" : {
+      "schedule_type" : "d",
+      "custom_key" : "custom_value"
+    },
+    "profilers" : [ {
+      "metric-name" : "PAGE_ID-ApproxCountDistinct",
+      "expression" : {
+        "operator" : "ApproxCountDistinct",
+        "config" : {
+          "column" : "PAGEID"
+        }
+      }
+    } ]
+  } ],
+  "sinks" : [
+    {
+    "name" : "es-sink",
+    "type" : "batch.elasticsearch",
+    "config" : {
+      "endpoint" : "https://estdq-datalvs.vip.ebay.com",
+      "password" : "1tIU7GQSADe4bCGGifWLfYYJSZGA8Szlc3ZWDMnd3gMhk43XPLUpw9Mv5viYQZ73",
+      "index-prefix" : "profiling-qa-",
+      "username" : "76361a1177564b72bdba1ddb23d17c58"
+    }
+  }
+  ]
+}

@@ -1,0 +1,6 @@
+/apache/spark/spark/bin/spark-submit --master yarn --deploy-mode cluster --files "PROFILER-ApproxDistinctCountUBIEvent.json,/apache/confs/hive/conf/hive-site.xml" --class com.ebay.dataquality.profiling.ProfilingJob profilingjob-1.0-SNAPSHOT.jar -c PROFILER-ApproxDistinctCountUBIEvent.json -t "20220120 12:12:12"
+/apache/spark/spark/bin/spark-submit --master yarn --deploy-mode cluster --files "PROFILER-RULE001.json,/apache/confs/hive/conf/hive-site.xml" --class com.ebay.dataquality.profiling.ProfilingJob profilingjob-1.0-SNAPSHOT.jar -c PROFILER-RULE001.json -t "20220123 12:12:12"
+
+/apache/spark/spark/bin/spark-submit --master yarn --deploy-mode cluster --files "PROFILER-ApproxDistinctCountUBIEvent.json,/apache/confs/hive/conf/hive-site.xml" --class com.ebay.dataquality.profiling.DeequTry profilingjob-1.0-SNAPSHOT.jar
+
+/apache/spark/spark/bin/spark-submit --master yarn --deploy-mode cluster --files "/apache/confs/hive/conf/hive-site.xml" --class com.ebay.dataquality.profiling.examples.DataProfilingExample profilingjob-1.0-SNAPSHOT.jar

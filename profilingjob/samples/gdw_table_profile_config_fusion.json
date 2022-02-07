@@ -1,0 +1,59 @@
+{
+  "name": "gdw_table_profiler",
+  "datasources": [
+    {
+      "name": "dw_user",
+      "type": "batch.table",
+      "config": {
+        "tableName": "GDW_TABLES.DW_USERS_INFO"
+      }
+    }
+  ],
+  "rules": [
+    {
+      "name": "default_rule",
+      "type": "batch.profiler",
+      "config": {
+        "custom_key": "custom_value",
+        "schedule_type": "h"
+      },
+      "profilers": [
+        {
+          "metric-name": "min_top_byr_gmb_score",
+          "expression": {
+            "operator": "Minimum",
+            "config": {"column": "top_byr_gmb_score"}
+          }
+        },
+        {
+          "metric-name": "max_length_city",
+          "expression": {
+            "operator": "MaxLength",
+            "config": {"column": "city"}
+          }
+        }
+      ]
+    }
+  ],
+  "sinks-comments": [
+    {
+      "name": "es-sink",
+      "type": "batch.elasticsearch",
+      "config": {
+        "endpoint": "http://localhost:9200",
+        "index-prefix": "profiling-test-"
+      }
+    }
+  ],
+  "sinks": [
+    {
+      "name": "console-sink",
+      "type": "batch.console",
+      "config": {
+        "row-limit": 100,
+        "stderr": false,
+        "json-format": true
+      }
+    }
+  ]
+}

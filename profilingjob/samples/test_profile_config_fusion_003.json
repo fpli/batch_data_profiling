@@ -1,0 +1,158 @@
+{
+  "name": "people_profiler_01",
+  "datasources": [
+    {
+      "name": "dw_user",
+      "type": "batch.csv",
+      "config": {
+        "header": false,
+        "file": "./profilingjob/samples/2.csv",
+        "columns": [
+          "name",
+          "age",
+          "time"
+        ],
+        "dateFilter": {
+          "ago": 4,
+          "duration": 3,
+          "time_unit": "h",
+          "date_format": "yyyyMMdd HH:mm:ss",
+          "filter_clause": "time between ${FROM_DATE} and ${TO_DATE}"
+        },
+        "sql": "select age * 2 as double_age, * from ${table_name}",
+        "table-name": "tmp_table"
+      }
+    }
+  ],
+  "rules": [
+    {
+      "name": "default_rule",
+      "type": "batch.profiler",
+      "config": {
+        "custom_key": "custom_value"
+      },
+      "profilers": [
+        {
+          "metric-name": "min_age",
+          "expression": {
+            "operator": "Minimum",
+            "config": {"column": "age"}
+          }
+        },
+        {
+          "metric-name": "max_age",
+          "expression": {
+            "operator": "Maximum",
+            "config": {"column": "age"}
+          }
+        },
+        {
+          "metric-name": "mean_age",
+          "expression": {
+            "operator": "Mean",
+            "config": {
+              "column": "age"
+            }
+          }
+        },
+        {
+          "metric-name": "max_length_name",
+          "expression": {
+            "operator": "MaxLength",
+            "config": {
+              "column": "name"
+            }
+          }
+        },
+        {
+          "metric-name": "min_length_name",
+          "expression": {
+            "operator": "MinLength",
+            "config": {
+              "column": "name"
+            }
+          }
+        },
+        {
+          "metric-name": "approx_count_distinct_name",
+          "expression": {
+            "operator": "ApproxCountDistinct",
+            "config": {
+              "column": "name"
+            }
+          }
+        },
+        {
+          "metric-name": "completeness_age",
+          "expression": {
+            "operator": "Completeness",
+            "config": {
+              "column": "age"
+            }
+          }
+        },
+        {
+          "metric-name": "approx_quantile_age",
+          "expression": {
+            "operator": "ApproxQuantile",
+            "config": {
+              "column": "age",
+              "quantile" : 0.5,
+              "relativeError" : 0.0
+            }
+          }
+        },
+        {
+          "metric-name": "max_age",
+          "expression": {
+            "operator": "Maximum",
+            "config": {"column": "age_plus_100"}
+          },
+          "filter": "age_plus_100 > 0",
+          "transformations": [
+            {
+              "alias": "age_plus_100",
+              "expression": {
+                "operator": "SQL",
+                "config": {"text": "age + 100"}
+              }
+            }
+          ],
+          "dimensions": [
+            "not_required"
+          ],
+          "comment": "Test - calculate max of age."
+        },
+        {
+          "metric-name": "failure_metric",
+          "expression": {
+            "operator": "Size"
+          },
+          "filter": "age > 0",
+          "comment": "This is an example of bad metric definition"
+        }
+      ]
+    }
+  ],
+  "sinks-comments": [
+    {
+      "name": "es-sink",
+      "type": "batch.elasticsearch",
+      "config": {
+        "endpoint": "http://localhost:9200",
+        "index-prefix": "profiling-test-"
+      }
+    }
+  ],
+  "sinks": [
+    {
+      "name": "console-sink",
+      "type": "batch.console",
+      "config": {
+        "row-limit": 100,
+        "stderr": false,
+        "json-format": true
+      }
+    }
+  ]
+}

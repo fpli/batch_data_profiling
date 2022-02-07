@@ -1,0 +1,165 @@
+{
+  "name": "people_profiler_01",
+  "datasources": [
+    {
+      "name": "dw_user",
+      "type": "batch.csv",
+      "config": {
+        "header": false,
+        "file": "./profilingjob/samples/1.csv",
+        "columns": [
+          "name",
+          "age"
+        ],
+        "table-name": "tmp_table01",
+        "sql": "select name, age, age * 2 as double_age from tmp_table01 as t1 where t1.age > 50"
+      }
+    }
+  ],
+  "rules": [
+    {
+      "name": "default_rule",
+      "type": "batch.profiler",
+      "config": {
+        "custom-key": "custom_value",
+        "schedule_type": "h"
+      },
+      "profilers": [
+        {
+          "metric-name": "min_age",
+          "expression": {
+            "operator": "Minimum",
+            "config": {"column": "age"}
+          }
+        },
+        {
+          "metric-name": "min_double_age",
+          "expression": {
+            "operator": "Minimum",
+            "config": {"column": "double_age"}
+          }
+        },
+        {
+          "metric-name": "max_age",
+          "expression": {
+            "operator": "Maximum",
+            "config": {"column": "age"}
+          }
+        },
+        {
+          "metric-name": "mean_age",
+          "expression": {
+            "operator": "Mean",
+            "config": {
+              "column": "age"
+            }
+          }
+        },
+        {
+          "metric-name": "max_length_name",
+          "expression": {
+            "operator": "MaxLength",
+            "config": {
+              "column": "name"
+            }
+          }
+        },
+        {
+          "metric-name": "min_length_name",
+          "expression": {
+            "operator": "MinLength",
+            "config": {
+              "column": "name"
+            }
+          }
+        },
+        {
+          "metric-name": "approx_count_distinct_name",
+          "expression": {
+            "operator": "ApproxCountDistinct",
+            "config": {
+              "column": "name"
+            }
+          }
+        },
+        {
+          "metric-name": "completeness_age",
+          "expression": {
+            "operator": "Completeness",
+            "config": {
+              "column": "age"
+            }
+          }
+        },
+        {
+          "metric-name": "approx_quantile_age",
+          "expression": {
+            "operator": "ApproxQuantile",
+            "config": {
+              "column": "age",
+              "quantile" : 0.5,
+              "relativeError" : 0.0
+            }
+          }
+        },
+        {
+          "metric-name": "max_age",
+          "expression": {
+            "operator": "Maximum",
+            "config": {"column": "age_plus_100"}
+          },
+          "filter": "age_plus_100 > 0",
+          "transformations": [
+            {
+              "alias": "age_plus_100",
+              "expression": {
+                "operator": "SQL",
+                "config": {"text": "age + 100"}
+              }
+            }
+          ],
+          "dimensions": [
+            "not_required"
+          ],
+          "comment": "Test - calculate max of age."
+        },
+        {
+          "metric-name": "failure_metric",
+          "expression": {
+            "operator": "Size"
+          },
+          "filter": "age > 0",
+          "comment": "This is an example of bad metric definition"
+        }
+      ]
+    }
+  ],
+  "sinks": [
+    {
+      "name": "es-sink",
+      "type": "batch.elasticsearch",
+      "config": {
+        "endpoint": "https://estess762test-dataslc.stratus.qa.ebay.com",
+        "username": "_DATAQUALITY_ES01",
+        "password": "2020MakeItHappen$ToTBZ",
+        "index-prefix": "profiling-test-"
+      },
+      "config-comment": {
+        "endpoint": "https://estess762test-dataslc.stratus.qa.ebay.com",
+        "index-prefix": "profiling-test-"
+      }
+    }
+  ],
+
+  "sinks-comments": [
+    {
+      "name": "console-sink",
+      "type": "batch.console",
+      "config": {
+        "row-limit": 100,
+        "stderr": false,
+        "json-format": true
+      }
+    }
+  ]
+}

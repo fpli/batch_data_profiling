@@ -1,0 +1,28 @@
+{
+  "name": "TEST_Profilers",
+  "dataSource": "test_datasource",
+  "configList": [
+    {
+      "name": "Size_OF_A",
+      "profiler": "Size",
+      "params": {
+        "paramList": [
+          {
+            "key": "where",
+            "value": {
+              "type": "String",
+              "value": "age > 20"
+            }
+          },
+          {
+            "key": "column",
+            "value": {
+              "type": "String",
+              "value": "age"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

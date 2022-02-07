@@ -1,0 +1,269 @@
+{
+  "name" : "PROFILER-NUM-SizeMaxMin",
+  "datasources" : [ {
+    "name" : "GDW_TABLES.DW_LSTG_ITEM",
+    "type" : "batch.table",
+    "config" : {
+      "tableName" : "GDW_TABLES.DW_LSTG_ITEM"
+    }
+  } ],
+  "rules" : [ {
+    "name" : "default_rule",
+    "type" : "batch.profiler",
+    "config" : {
+      "schedule_type" : "d",
+      "custom_key" : "custom_value"
+    },
+    "profilers" : [ {
+      "metric-name" : "AUCT_START_EXCHNG_RATE-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "AUCT_START_EXCHNG_RATE"
+        }
+      }
+    }, {
+      "metric-name" : "AUCT_START_EXCHNG_RATE-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "AUCT_START_EXCHNG_RATE"
+        }
+      }
+    }, {
+      "metric-name" : "AUCT_START_EXCHNG_RATE-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "AUCT_START_EXCHNG_RATE"
+        }
+      }
+    }, {
+      "metric-name" : "AUCT_TYPE_CODE-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "AUCT_TYPE_CODE"
+        }
+      }
+    }, {
+      "metric-name" : "AUCT_TYPE_CODE-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "AUCT_TYPE_CODE"
+        }
+      }
+    }, {
+      "metric-name" : "AUCT_TYPE_CODE-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "AUCT_TYPE_CODE"
+        }
+      }
+    }, {
+      "metric-name" : "BIDCOUNT-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "BIDCOUNT"
+        }
+      }
+    }, {
+      "metric-name" : "BIDCOUNT-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "BIDCOUNT"
+        }
+      }
+    }, {
+      "metric-name" : "BIDCOUNT-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "BIDCOUNT"
+        }
+      }
+    }, {
+      "metric-name" : "BIN_PRICE_LSTG_CURNCY-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "BIN_PRICE_LSTG_CURNCY"
+        }
+      }
+    }, {
+      "metric-name" : "BIN_PRICE_LSTG_CURNCY-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "BIN_PRICE_LSTG_CURNCY"
+        }
+      }
+    }, {
+      "metric-name" : "BIN_PRICE_LSTG_CURNCY-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "BIN_PRICE_LSTG_CURNCY"
+        }
+      }
+    }, {
+      "metric-name" : "CURNT_PRICE_LSTG_CURNCY-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "CURNT_PRICE_LSTG_CURNCY"
+        }
+      }
+    }, {
+      "metric-name" : "CURNT_PRICE_LSTG_CURNCY-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "CURNT_PRICE_LSTG_CURNCY"
+        }
+      }
+    }, {
+      "metric-name" : "CURNT_PRICE_LSTG_CURNCY-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "CURNT_PRICE_LSTG_CURNCY"
+        }
+      }
+    }, {
+      "metric-name" : "GMS_DUTCH_LSTG_CURNCY-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "GMS_DUTCH_LSTG_CURNCY"
+        }
+      }
+    }, {
+      "metric-name" : "GMS_DUTCH_LSTG_CURNCY-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "GMS_DUTCH_LSTG_CURNCY"
+        }
+      }
+    }, {
+      "metric-name" : "GMS_DUTCH_LSTG_CURNCY-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "GMS_DUTCH_LSTG_CURNCY"
+        }
+      }
+    }, {
+      "metric-name" : "INSURANCE_FEE_LSTG_CURNCY-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "INSURANCE_FEE_LSTG_CURNCY"
+        }
+      }
+    }, {
+      "metric-name" : "INSURANCE_FEE_LSTG_CURNCY-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "INSURANCE_FEE_LSTG_CURNCY"
+        }
+      }
+    }, {
+      "metric-name" : "INSURANCE_FEE_LSTG_CURNCY-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "INSURANCE_FEE_LSTG_CURNCY"
+        }
+      }
+    }, {
+      "metric-name" : "LOT_SIZE-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "LOT_SIZE"
+        }
+      }
+    }, {
+      "metric-name" : "LOT_SIZE-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "LOT_SIZE"
+        }
+      }
+    }, {
+      "metric-name" : "LOT_SIZE-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "LOT_SIZE"
+        }
+      }
+    }, {
+      "metric-name" : "MAXBID-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "MAXBID"
+        }
+      }
+    }, {
+      "metric-name" : "MAXBID-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "MAXBID"
+        }
+      }
+    }, {
+      "metric-name" : "MAXBID-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "MAXBID"
+        }
+      }
+    }, {
+      "metric-name" : "QTY_AVAIL-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "QTY_AVAIL"
+        }
+      }
+    }, {
+      "metric-name" : "QTY_AVAIL-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "QTY_AVAIL"
+        }
+      }
+    }, {
+      "metric-name" : "QTY_AVAIL-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "QTY_AVAIL"
+        }
+      }
+    } ]
+  } ],
+  "sinks" : [ {
+    "name" : "es-sink",
+    "type" : "batch.elasticsearch",
+    "config" : {
+      "endpoint" : "https://esdataprofiler-datarno.vip.ebay.com",
+      "password" : "2020MakeItHappen$ToTBZ",
+      "index-prefix" : "profiling-qa-",
+      "username" : "_DATAQUALITY_ES01"
+    }
+  } ]
+}

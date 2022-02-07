@@ -1,0 +1,541 @@
+{
+  "name" : "PROFILER-DW_USERS_INFO-3",
+  "datasources" : [ {
+    "name" : "GDW_TABLES.DW_USERS_INFO",
+    "type" : "batch.table",
+    "config" : {
+      "tableName" : "GDW_TABLES.DW_USERS_INFO"
+    }
+  } ],
+  "rules" : [ {
+    "name" : "default_rule",
+    "type" : "batch.profiler",
+    "config" : {
+      "schedule_type" : "d",
+      "custom_key" : "custom_value"
+    },
+    "profilers" : [ {
+      "metric-name" : "COMP-MaxLength",
+      "expression" : {
+        "operator" : "MaxLength",
+        "config" : {
+          "column" : "COMP"
+        }
+      }
+    }, {
+      "metric-name" : "COMP-MinLength",
+      "expression" : {
+        "operator" : "MinLength",
+        "config" : {
+          "column" : "COMP"
+        }
+      }
+    }, {
+      "metric-name" : "CRE_USER-MaxLength",
+      "expression" : {
+        "operator" : "MaxLength",
+        "config" : {
+          "column" : "CRE_USER"
+        }
+      }
+    }, {
+      "metric-name" : "CRE_USER-MinLength",
+      "expression" : {
+        "operator" : "MinLength",
+        "config" : {
+          "column" : "CRE_USER"
+        }
+      }
+    }, {
+      "metric-name" : "DAYPHONE-MaxLength",
+      "expression" : {
+        "operator" : "MaxLength",
+        "config" : {
+          "column" : "DAYPHONE"
+        }
+      }
+    }, {
+      "metric-name" : "DAYPHONE-MinLength",
+      "expression" : {
+        "operator" : "MinLength",
+        "config" : {
+          "column" : "DAYPHONE"
+        }
+      }
+    }, {
+      "metric-name" : "EMAIL-MaxLength",
+      "expression" : {
+        "operator" : "MaxLength",
+        "config" : {
+          "column" : "EMAIL"
+        }
+      }
+    }, {
+      "metric-name" : "EMAIL-MinLength",
+      "expression" : {
+        "operator" : "MinLength",
+        "config" : {
+          "column" : "EMAIL"
+        }
+      }
+    }, {
+      "metric-name" : "EQUIFAX_STS-MaxLength",
+      "expression" : {
+        "operator" : "MaxLength",
+        "config" : {
+          "column" : "EQUIFAX_STS"
+        }
+      }
+    }, {
+      "metric-name" : "EQUIFAX_STS-MinLength",
+      "expression" : {
+        "operator" : "MinLength",
+        "config" : {
+          "column" : "EQUIFAX_STS"
+        }
+      }
+    }, {
+      "metric-name" : "FAXPHONE-MaxLength",
+      "expression" : {
+        "operator" : "MaxLength",
+        "config" : {
+          "column" : "FAXPHONE"
+        }
+      }
+    }, {
+      "metric-name" : "FAXPHONE-MinLength",
+      "expression" : {
+        "operator" : "MinLength",
+        "config" : {
+          "column" : "FAXPHONE"
+        }
+      }
+    }, {
+      "metric-name" : "GENDER_MFU-MaxLength",
+      "expression" : {
+        "operator" : "MaxLength",
+        "config" : {
+          "column" : "GENDER_MFU"
+        }
+      }
+    }, {
+      "metric-name" : "GENDER_MFU-MinLength",
+      "expression" : {
+        "operator" : "MinLength",
+        "config" : {
+          "column" : "GENDER_MFU"
+        }
+      }
+    }, {
+      "metric-name" : "GOOD_CRD_YN-MaxLength",
+      "expression" : {
+        "operator" : "MaxLength",
+        "config" : {
+          "column" : "GOOD_CRD_YN"
+        }
+      }
+    }, {
+      "metric-name" : "GOOD_CRD_YN-MinLength",
+      "expression" : {
+        "operator" : "MinLength",
+        "config" : {
+          "column" : "GOOD_CRD_YN"
+        }
+      }
+    }, {
+      "metric-name" : "BANNER_PRTNR_ID-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "BANNER_PRTNR_ID"
+        }
+      }
+    }, {
+      "metric-name" : "BANNER_PRTNR_ID-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "BANNER_PRTNR_ID"
+        }
+      }
+    }, {
+      "metric-name" : "BANNER_PRTNR_ID-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "BANNER_PRTNR_ID"
+        }
+      }
+    }, {
+      "metric-name" : "BLNG_CURNCY_ID-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "BLNG_CURNCY_ID"
+        }
+      }
+    }, {
+      "metric-name" : "BLNG_CURNCY_ID-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "BLNG_CURNCY_ID"
+        }
+      }
+    }, {
+      "metric-name" : "BLNG_CURNCY_ID-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "BLNG_CURNCY_ID"
+        }
+      }
+    }, {
+      "metric-name" : "COBRAND_PRTNR_ID-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "COBRAND_PRTNR_ID"
+        }
+      }
+    }, {
+      "metric-name" : "COBRAND_PRTNR_ID-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "COBRAND_PRTNR_ID"
+        }
+      }
+    }, {
+      "metric-name" : "COBRAND_PRTNR_ID-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "COBRAND_PRTNR_ID"
+        }
+      }
+    }, {
+      "metric-name" : "EQUIFAX_ATTEMPTS-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "EQUIFAX_ATTEMPTS"
+        }
+      }
+    }, {
+      "metric-name" : "EQUIFAX_ATTEMPTS-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "EQUIFAX_ATTEMPTS"
+        }
+      }
+    }, {
+      "metric-name" : "EQUIFAX_ATTEMPTS-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "EQUIFAX_ATTEMPTS"
+        }
+      }
+    }, {
+      "metric-name" : "FEEDBACK_SCORE-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "FEEDBACK_SCORE"
+        }
+      }
+    }, {
+      "metric-name" : "FEEDBACK_SCORE-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "FEEDBACK_SCORE"
+        }
+      }
+    }, {
+      "metric-name" : "FEEDBACK_SCORE-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "FEEDBACK_SCORE"
+        }
+      }
+    }, {
+      "metric-name" : "PREF_CATEG_INTEREST1_ID-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "PREF_CATEG_INTEREST1_ID"
+        }
+      }
+    }, {
+      "metric-name" : "PREF_CATEG_INTEREST1_ID-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "PREF_CATEG_INTEREST1_ID"
+        }
+      }
+    }, {
+      "metric-name" : "PREF_CATEG_INTEREST1_ID-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "PREF_CATEG_INTEREST1_ID"
+        }
+      }
+    }, {
+      "metric-name" : "PREF_CATEG_INTEREST2_ID-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "PREF_CATEG_INTEREST2_ID"
+        }
+      }
+    }, {
+      "metric-name" : "PREF_CATEG_INTEREST2_ID-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "PREF_CATEG_INTEREST2_ID"
+        }
+      }
+    }, {
+      "metric-name" : "PREF_CATEG_INTEREST2_ID-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "PREF_CATEG_INTEREST2_ID"
+        }
+      }
+    }, {
+      "metric-name" : "PREF_CATEG_INTEREST3_ID-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "PREF_CATEG_INTEREST3_ID"
+        }
+      }
+    }, {
+      "metric-name" : "PREF_CATEG_INTEREST3_ID-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "PREF_CATEG_INTEREST3_ID"
+        }
+      }
+    }, {
+      "metric-name" : "PREF_CATEG_INTEREST3_ID-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "PREF_CATEG_INTEREST3_ID"
+        }
+      }
+    }, {
+      "metric-name" : "PREF_CATEG_INTEREST4_ID-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "PREF_CATEG_INTEREST4_ID"
+        }
+      }
+    }, {
+      "metric-name" : "PREF_CATEG_INTEREST4_ID-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "PREF_CATEG_INTEREST4_ID"
+        }
+      }
+    }, {
+      "metric-name" : "PREF_CATEG_INTEREST4_ID-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "PREF_CATEG_INTEREST4_ID"
+        }
+      }
+    }, {
+      "metric-name" : "TOP_SLR_LVL_CODE-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "TOP_SLR_LVL_CODE"
+        }
+      }
+    }, {
+      "metric-name" : "TOP_SLR_LVL_CODE-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "TOP_SLR_LVL_CODE"
+        }
+      }
+    }, {
+      "metric-name" : "TOP_SLR_LVL_CODE-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "TOP_SLR_LVL_CODE"
+        }
+      }
+    }, {
+      "metric-name" : "USER_CNTRY_ID-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "USER_CNTRY_ID"
+        }
+      }
+    }, {
+      "metric-name" : "USER_CNTRY_ID-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "USER_CNTRY_ID"
+        }
+      }
+    }, {
+      "metric-name" : "USER_CNTRY_ID-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "USER_CNTRY_ID"
+        }
+      }
+    }, {
+      "metric-name" : "USER_FLAGS-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "USER_FLAGS"
+        }
+      }
+    }, {
+      "metric-name" : "USER_FLAGS-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "USER_FLAGS"
+        }
+      }
+    }, {
+      "metric-name" : "USER_FLAGS-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "USER_FLAGS"
+        }
+      }
+    }, {
+      "metric-name" : "PRI_USER_ID-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "PRI_USER_ID"
+        }
+      }
+    }, {
+      "metric-name" : "PRI_USER_ID-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "PRI_USER_ID"
+        }
+      }
+    }, {
+      "metric-name" : "PRI_USER_ID-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "PRI_USER_ID"
+        }
+      }
+    }, {
+      "metric-name" : "USER_REGN_ID-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "USER_REGN_ID"
+        }
+      }
+    }, {
+      "metric-name" : "USER_REGN_ID-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "USER_REGN_ID"
+        }
+      }
+    }, {
+      "metric-name" : "USER_REGN_ID-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "USER_REGN_ID"
+        }
+      }
+    }, {
+      "metric-name" : "USER_SITE_ID-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "USER_SITE_ID"
+        }
+      }
+    }, {
+      "metric-name" : "USER_SITE_ID-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "USER_SITE_ID"
+        }
+      }
+    }, {
+      "metric-name" : "USER_SITE_ID-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "USER_SITE_ID"
+        }
+      }
+    }, {
+      "metric-name" : "USER_STS_CODE-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "USER_STS_CODE"
+        }
+      }
+    }, {
+      "metric-name" : "USER_STS_CODE-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "USER_STS_CODE"
+        }
+      }
+    }, {
+      "metric-name" : "USER_STS_CODE-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "USER_STS_CODE"
+        }
+      }
+    } ]
+  } ],
+  "sinks" : [ {
+    "name" : "es-sink",
+    "type" : "batch.elasticsearch",
+    "config" : {
+      "endpoint" : "https://esdataprofiler-datarno.vip.ebay.com",
+      "password" : "2020MakeItHappen$ToTBZ",
+      "index-prefix" : "profiling-qa-",
+      "username" : "_DATAQUALITY_ES01"
+    }
+  } ]
+}

@@ -1,0 +1,989 @@
+{
+  "name" : "PROFILER-NUM-STR",
+  "datasources" : [ {
+    "name" : "GDW_TABLES.DW_LSTG_ITEM",
+    "type" : "batch.table",
+    "config" : {
+      "tableName" : "GDW_TABLES.DW_LSTG_ITEM"
+    }
+  } ],
+  "rules" : [ {
+    "name" : "default_rule",
+    "type" : "batch.profiler",
+    "config" : {
+      "schedule_type" : "d",
+      "custom_key" : "custom_value"
+    },
+    "profilers" : [ {
+      "metric-name" : "AUCT_START_EXCHNG_RATE-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "AUCT_START_EXCHNG_RATE"
+        }
+      }
+    }, {
+      "metric-name" : "AUCT_START_EXCHNG_RATE-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "AUCT_START_EXCHNG_RATE"
+        }
+      }
+    }, {
+      "metric-name" : "AUCT_START_EXCHNG_RATE-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "AUCT_START_EXCHNG_RATE"
+        }
+      }
+    }, {
+      "metric-name" : "AUCT_TYPE_CODE-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "AUCT_TYPE_CODE"
+        }
+      }
+    }, {
+      "metric-name" : "AUCT_TYPE_CODE-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "AUCT_TYPE_CODE"
+        }
+      }
+    }, {
+      "metric-name" : "AUCT_TYPE_CODE-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "AUCT_TYPE_CODE"
+        }
+      }
+    }, {
+      "metric-name" : "BIDCOUNT-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "BIDCOUNT"
+        }
+      }
+    }, {
+      "metric-name" : "BIDCOUNT-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "BIDCOUNT"
+        }
+      }
+    }, {
+      "metric-name" : "BIDCOUNT-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "BIDCOUNT"
+        }
+      }
+    }, {
+      "metric-name" : "BIN_PRICE_LSTG_CURNCY-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "BIN_PRICE_LSTG_CURNCY"
+        }
+      }
+    }, {
+      "metric-name" : "BIN_PRICE_LSTG_CURNCY-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "BIN_PRICE_LSTG_CURNCY"
+        }
+      }
+    }, {
+      "metric-name" : "BIN_PRICE_LSTG_CURNCY-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "BIN_PRICE_LSTG_CURNCY"
+        }
+      }
+    }, {
+      "metric-name" : "CURNT_PRICE_LSTG_CURNCY-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "CURNT_PRICE_LSTG_CURNCY"
+        }
+      }
+    }, {
+      "metric-name" : "CURNT_PRICE_LSTG_CURNCY-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "CURNT_PRICE_LSTG_CURNCY"
+        }
+      }
+    }, {
+      "metric-name" : "CURNT_PRICE_LSTG_CURNCY-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "CURNT_PRICE_LSTG_CURNCY"
+        }
+      }
+    }, {
+      "metric-name" : "GMS_DUTCH_LSTG_CURNCY-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "GMS_DUTCH_LSTG_CURNCY"
+        }
+      }
+    }, {
+      "metric-name" : "GMS_DUTCH_LSTG_CURNCY-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "GMS_DUTCH_LSTG_CURNCY"
+        }
+      }
+    }, {
+      "metric-name" : "GMS_DUTCH_LSTG_CURNCY-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "GMS_DUTCH_LSTG_CURNCY"
+        }
+      }
+    }, {
+      "metric-name" : "INSURANCE_FEE_LSTG_CURNCY-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "INSURANCE_FEE_LSTG_CURNCY"
+        }
+      }
+    }, {
+      "metric-name" : "INSURANCE_FEE_LSTG_CURNCY-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "INSURANCE_FEE_LSTG_CURNCY"
+        }
+      }
+    }, {
+      "metric-name" : "INSURANCE_FEE_LSTG_CURNCY-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "INSURANCE_FEE_LSTG_CURNCY"
+        }
+      }
+    }, {
+      "metric-name" : "LOT_SIZE-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "LOT_SIZE"
+        }
+      }
+    }, {
+      "metric-name" : "LOT_SIZE-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "LOT_SIZE"
+        }
+      }
+    }, {
+      "metric-name" : "LOT_SIZE-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "LOT_SIZE"
+        }
+      }
+    }, {
+      "metric-name" : "MAXBID-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "MAXBID"
+        }
+      }
+    }, {
+      "metric-name" : "MAXBID-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "MAXBID"
+        }
+      }
+    }, {
+      "metric-name" : "MAXBID-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "MAXBID"
+        }
+      }
+    }, {
+      "metric-name" : "QTY_AVAIL-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "QTY_AVAIL"
+        }
+      }
+    }, {
+      "metric-name" : "QTY_AVAIL-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "QTY_AVAIL"
+        }
+      }
+    }, {
+      "metric-name" : "QTY_AVAIL-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "QTY_AVAIL"
+        }
+      }
+    }, {
+      "metric-name" : "APPLICATION_ID-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "APPLICATION_ID"
+        }
+      }
+    }, {
+      "metric-name" : "APPLICATION_ID-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "APPLICATION_ID"
+        }
+      }
+    }, {
+      "metric-name" : "APPLICATION_ID-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "APPLICATION_ID"
+        }
+      }
+    }, {
+      "metric-name" : "CATEG_KEY-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "CATEG_KEY"
+        }
+      }
+    }, {
+      "metric-name" : "CATEG_KEY-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "CATEG_KEY"
+        }
+      }
+    }, {
+      "metric-name" : "CATEG_KEY-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "CATEG_KEY"
+        }
+      }
+    }, {
+      "metric-name" : "CATEG_KEY2-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "CATEG_KEY2"
+        }
+      }
+    }, {
+      "metric-name" : "CATEG_KEY2-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "CATEG_KEY2"
+        }
+      }
+    }, {
+      "metric-name" : "CATEG_KEY2-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "CATEG_KEY2"
+        }
+      }
+    }, {
+      "metric-name" : "AUCT_END_EXCHNG_RATE-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "AUCT_END_EXCHNG_RATE"
+        }
+      }
+    }, {
+      "metric-name" : "AUCT_END_EXCHNG_RATE-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "AUCT_END_EXCHNG_RATE"
+        }
+      }
+    }, {
+      "metric-name" : "AUCT_END_EXCHNG_RATE-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "AUCT_END_EXCHNG_RATE"
+        }
+      }
+    }, {
+      "metric-name" : "GLRY_STATE-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "GLRY_STATE"
+        }
+      }
+    }, {
+      "metric-name" : "GLRY_STATE-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "GLRY_STATE"
+        }
+      }
+    }, {
+      "metric-name" : "GLRY_STATE-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "GLRY_STATE"
+        }
+      }
+    }, {
+      "metric-name" : "GMS_LSTG_CURNCY_EST-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "GMS_LSTG_CURNCY_EST"
+        }
+      }
+    }, {
+      "metric-name" : "GMS_LSTG_CURNCY_EST-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "GMS_LSTG_CURNCY_EST"
+        }
+      }
+    }, {
+      "metric-name" : "GMS_LSTG_CURNCY_EST-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "GMS_LSTG_CURNCY_EST"
+        }
+      }
+    }, {
+      "metric-name" : "HIGH_BDR_CNTRY_ID-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "HIGH_BDR_CNTRY_ID"
+        }
+      }
+    }, {
+      "metric-name" : "HIGH_BDR_CNTRY_ID-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "HIGH_BDR_CNTRY_ID"
+        }
+      }
+    }, {
+      "metric-name" : "HIGH_BDR_CNTRY_ID-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "HIGH_BDR_CNTRY_ID"
+        }
+      }
+    }, {
+      "metric-name" : "ITEM_SITE_ID-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "ITEM_SITE_ID"
+        }
+      }
+    }, {
+      "metric-name" : "ITEM_SITE_ID-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "ITEM_SITE_ID"
+        }
+      }
+    }, {
+      "metric-name" : "ITEM_SITE_ID-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "ITEM_SITE_ID"
+        }
+      }
+    }, {
+      "metric-name" : "ITEM_VRSN_ID-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "ITEM_VRSN_ID"
+        }
+      }
+    }, {
+      "metric-name" : "ITEM_VRSN_ID-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "ITEM_VRSN_ID"
+        }
+      }
+    }, {
+      "metric-name" : "ITEM_VRSN_ID-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "ITEM_VRSN_ID"
+        }
+      }
+    }, {
+      "metric-name" : "LAYOUT_ID-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "LAYOUT_ID"
+        }
+      }
+    }, {
+      "metric-name" : "LAYOUT_ID-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "LAYOUT_ID"
+        }
+      }
+    }, {
+      "metric-name" : "LAYOUT_ID-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "LAYOUT_ID"
+        }
+      }
+    }, {
+      "metric-name" : "AUCT_TITL-MaxLength",
+      "expression" : {
+        "operator" : "MaxLength",
+        "config" : {
+          "column" : "AUCT_TITL"
+        }
+      }
+    }, {
+      "metric-name" : "AUCT_TITL-MinLength",
+      "expression" : {
+        "operator" : "MinLength",
+        "config" : {
+          "column" : "AUCT_TITL"
+        }
+      }
+    }, {
+      "metric-name" : "AUCT_TITL-Uniqueness",
+      "expression" : {
+        "operator" : "Uniqueness",
+        "config" : {
+          "column" : "AUCT_TITL"
+        }
+      }
+    }, {
+      "metric-name" : "BOLD_TITLE-MaxLength",
+      "expression" : {
+        "operator" : "MaxLength",
+        "config" : {
+          "column" : "BOLD_TITLE"
+        }
+      }
+    }, {
+      "metric-name" : "BOLD_TITLE-MinLength",
+      "expression" : {
+        "operator" : "MinLength",
+        "config" : {
+          "column" : "BOLD_TITLE"
+        }
+      }
+    }, {
+      "metric-name" : "BOLD_TITLE-Uniqueness",
+      "expression" : {
+        "operator" : "Uniqueness",
+        "config" : {
+          "column" : "BOLD_TITLE"
+        }
+      }
+    }, {
+      "metric-name" : "CRE_USER-MaxLength",
+      "expression" : {
+        "operator" : "MaxLength",
+        "config" : {
+          "column" : "CRE_USER"
+        }
+      }
+    }, {
+      "metric-name" : "CRE_USER-MinLength",
+      "expression" : {
+        "operator" : "MinLength",
+        "config" : {
+          "column" : "CRE_USER"
+        }
+      }
+    }, {
+      "metric-name" : "CRE_USER-Uniqueness",
+      "expression" : {
+        "operator" : "Uniqueness",
+        "config" : {
+          "column" : "CRE_USER"
+        }
+      }
+    }, {
+      "metric-name" : "CUST_REF_CODE-MaxLength",
+      "expression" : {
+        "operator" : "MaxLength",
+        "config" : {
+          "column" : "CUST_REF_CODE"
+        }
+      }
+    }, {
+      "metric-name" : "CUST_REF_CODE-MinLength",
+      "expression" : {
+        "operator" : "MinLength",
+        "config" : {
+          "column" : "CUST_REF_CODE"
+        }
+      }
+    }, {
+      "metric-name" : "CUST_REF_CODE-Uniqueness",
+      "expression" : {
+        "operator" : "Uniqueness",
+        "config" : {
+          "column" : "CUST_REF_CODE"
+        }
+      }
+    }, {
+      "metric-name" : "FEATURED-MaxLength",
+      "expression" : {
+        "operator" : "MaxLength",
+        "config" : {
+          "column" : "FEATURED"
+        }
+      }
+    }, {
+      "metric-name" : "FEATURED-MinLength",
+      "expression" : {
+        "operator" : "MinLength",
+        "config" : {
+          "column" : "FEATURED"
+        }
+      }
+    }, {
+      "metric-name" : "FEATURED-Uniqueness",
+      "expression" : {
+        "operator" : "Uniqueness",
+        "config" : {
+          "column" : "FEATURED"
+        }
+      }
+    }, {
+      "metric-name" : "GALLERY_URL-MaxLength",
+      "expression" : {
+        "operator" : "MaxLength",
+        "config" : {
+          "column" : "GALLERY_URL"
+        }
+      }
+    }, {
+      "metric-name" : "GALLERY_URL-MinLength",
+      "expression" : {
+        "operator" : "MinLength",
+        "config" : {
+          "column" : "GALLERY_URL"
+        }
+      }
+    }, {
+      "metric-name" : "GALLERY_URL-Uniqueness",
+      "expression" : {
+        "operator" : "Uniqueness",
+        "config" : {
+          "column" : "GALLERY_URL"
+        }
+      }
+    }, {
+      "metric-name" : "HOST_IP_ADDR-MaxLength",
+      "expression" : {
+        "operator" : "MaxLength",
+        "config" : {
+          "column" : "HOST_IP_ADDR"
+        }
+      }
+    }, {
+      "metric-name" : "HOST_IP_ADDR-MinLength",
+      "expression" : {
+        "operator" : "MinLength",
+        "config" : {
+          "column" : "HOST_IP_ADDR"
+        }
+      }
+    }, {
+      "metric-name" : "HOST_IP_ADDR-Uniqueness",
+      "expression" : {
+        "operator" : "Uniqueness",
+        "config" : {
+          "column" : "HOST_IP_ADDR"
+        }
+      }
+    }, {
+      "metric-name" : "ITEM_LOC-MaxLength",
+      "expression" : {
+        "operator" : "MaxLength",
+        "config" : {
+          "column" : "ITEM_LOC"
+        }
+      }
+    }, {
+      "metric-name" : "ITEM_LOC-MinLength",
+      "expression" : {
+        "operator" : "MinLength",
+        "config" : {
+          "column" : "ITEM_LOC"
+        }
+      }
+    }, {
+      "metric-name" : "ITEM_LOC-Uniqueness",
+      "expression" : {
+        "operator" : "Uniqueness",
+        "config" : {
+          "column" : "ITEM_LOC"
+        }
+      }
+    }, {
+      "metric-name" : "ITEM_PRPTY_KEY_TXT-MaxLength",
+      "expression" : {
+        "operator" : "MaxLength",
+        "config" : {
+          "column" : "ITEM_PRPTY_KEY_TXT"
+        }
+      }
+    }, {
+      "metric-name" : "ITEM_PRPTY_KEY_TXT-MinLength",
+      "expression" : {
+        "operator" : "MinLength",
+        "config" : {
+          "column" : "ITEM_PRPTY_KEY_TXT"
+        }
+      }
+    }, {
+      "metric-name" : "ITEM_PRPTY_KEY_TXT-Uniqueness",
+      "expression" : {
+        "operator" : "Uniqueness",
+        "config" : {
+          "column" : "ITEM_PRPTY_KEY_TXT"
+        }
+      }
+    }, {
+      "metric-name" : "ITEM_ZIP-MaxLength",
+      "expression" : {
+        "operator" : "MaxLength",
+        "config" : {
+          "column" : "ITEM_ZIP"
+        }
+      }
+    }, {
+      "metric-name" : "ITEM_ZIP-MinLength",
+      "expression" : {
+        "operator" : "MinLength",
+        "config" : {
+          "column" : "ITEM_ZIP"
+        }
+      }
+    }, {
+      "metric-name" : "ITEM_ZIP-Uniqueness",
+      "expression" : {
+        "operator" : "Uniqueness",
+        "config" : {
+          "column" : "ITEM_ZIP"
+        }
+      }
+    }, {
+      "metric-name" : "PAYMENT_CASH-MaxLength",
+      "expression" : {
+        "operator" : "MaxLength",
+        "config" : {
+          "column" : "PAYMENT_CASH"
+        }
+      }
+    }, {
+      "metric-name" : "PAYMENT_CASH-MinLength",
+      "expression" : {
+        "operator" : "MinLength",
+        "config" : {
+          "column" : "PAYMENT_CASH"
+        }
+      }
+    }, {
+      "metric-name" : "PAYMENT_CASH-Uniqueness",
+      "expression" : {
+        "operator" : "Uniqueness",
+        "config" : {
+          "column" : "PAYMENT_CASH"
+        }
+      }
+    }, {
+      "metric-name" : "PAYMENT_MONEYXFER-MaxLength",
+      "expression" : {
+        "operator" : "MaxLength",
+        "config" : {
+          "column" : "PAYMENT_MONEYXFER"
+        }
+      }
+    }, {
+      "metric-name" : "PAYMENT_MONEYXFER-MinLength",
+      "expression" : {
+        "operator" : "MinLength",
+        "config" : {
+          "column" : "PAYMENT_MONEYXFER"
+        }
+      }
+    }, {
+      "metric-name" : "PAYMENT_MONEYXFER-Uniqueness",
+      "expression" : {
+        "operator" : "Uniqueness",
+        "config" : {
+          "column" : "PAYMENT_MONEYXFER"
+        }
+      }
+    }, {
+      "metric-name" : "WACKO_YN-MaxLength",
+      "expression" : {
+        "operator" : "MaxLength",
+        "config" : {
+          "column" : "WACKO_YN"
+        }
+      }
+    }, {
+      "metric-name" : "WACKO_YN-MinLength",
+      "expression" : {
+        "operator" : "MinLength",
+        "config" : {
+          "column" : "WACKO_YN"
+        }
+      }
+    }, {
+      "metric-name" : "WACKO_YN-Uniqueness",
+      "expression" : {
+        "operator" : "Uniqueness",
+        "config" : {
+          "column" : "WACKO_YN"
+        }
+      }
+    }, {
+      "metric-name" : "UPD_USER-MaxLength",
+      "expression" : {
+        "operator" : "MaxLength",
+        "config" : {
+          "column" : "UPD_USER"
+        }
+      }
+    }, {
+      "metric-name" : "UPD_USER-MinLength",
+      "expression" : {
+        "operator" : "MinLength",
+        "config" : {
+          "column" : "UPD_USER"
+        }
+      }
+    }, {
+      "metric-name" : "UPD_USER-Uniqueness",
+      "expression" : {
+        "operator" : "Uniqueness",
+        "config" : {
+          "column" : "UPD_USER"
+        }
+      }
+    }, {
+      "metric-name" : "TAX_NEW_STATE-MaxLength",
+      "expression" : {
+        "operator" : "MaxLength",
+        "config" : {
+          "column" : "TAX_NEW_STATE"
+        }
+      }
+    }, {
+      "metric-name" : "TAX_NEW_STATE-MinLength",
+      "expression" : {
+        "operator" : "MinLength",
+        "config" : {
+          "column" : "TAX_NEW_STATE"
+        }
+      }
+    }, {
+      "metric-name" : "TAX_NEW_STATE-Uniqueness",
+      "expression" : {
+        "operator" : "Uniqueness",
+        "config" : {
+          "column" : "TAX_NEW_STATE"
+        }
+      }
+    }, {
+      "metric-name" : "SUBTITLE-MaxLength",
+      "expression" : {
+        "operator" : "MaxLength",
+        "config" : {
+          "column" : "SUBTITLE"
+        }
+      }
+    }, {
+      "metric-name" : "SUBTITLE-MinLength",
+      "expression" : {
+        "operator" : "MinLength",
+        "config" : {
+          "column" : "SUBTITLE"
+        }
+      }
+    }, {
+      "metric-name" : "SUBTITLE-Uniqueness",
+      "expression" : {
+        "operator" : "Uniqueness",
+        "config" : {
+          "column" : "SUBTITLE"
+        }
+      }
+    }, {
+      "metric-name" : "STOCK_PHOTO_USED_YN-MaxLength",
+      "expression" : {
+        "operator" : "MaxLength",
+        "config" : {
+          "column" : "STOCK_PHOTO_USED_YN"
+        }
+      }
+    }, {
+      "metric-name" : "STOCK_PHOTO_USED_YN-MinLength",
+      "expression" : {
+        "operator" : "MinLength",
+        "config" : {
+          "column" : "STOCK_PHOTO_USED_YN"
+        }
+      }
+    }, {
+      "metric-name" : "STOCK_PHOTO_USED_YN-Uniqueness",
+      "expression" : {
+        "operator" : "Uniqueness",
+        "config" : {
+          "column" : "STOCK_PHOTO_USED_YN"
+        }
+      }
+    }, {
+      "metric-name" : "SLR_PRDCT_ID_TXT-MaxLength",
+      "expression" : {
+        "operator" : "MaxLength",
+        "config" : {
+          "column" : "SLR_PRDCT_ID_TXT"
+        }
+      }
+    }, {
+      "metric-name" : "SLR_PRDCT_ID_TXT-MinLength",
+      "expression" : {
+        "operator" : "MinLength",
+        "config" : {
+          "column" : "SLR_PRDCT_ID_TXT"
+        }
+      }
+    }, {
+      "metric-name" : "SLR_PRDCT_ID_TXT-Uniqueness",
+      "expression" : {
+        "operator" : "Uniqueness",
+        "config" : {
+          "column" : "SLR_PRDCT_ID_TXT"
+        }
+      }
+    }, {
+      "metric-name" : "PRMTN_SALE_START_TM-MaxLength",
+      "expression" : {
+        "operator" : "MaxLength",
+        "config" : {
+          "column" : "PRMTN_SALE_START_TM"
+        }
+      }
+    }, {
+      "metric-name" : "PRMTN_SALE_START_TM-MinLength",
+      "expression" : {
+        "operator" : "MinLength",
+        "config" : {
+          "column" : "PRMTN_SALE_START_TM"
+        }
+      }
+    }, {
+      "metric-name" : "PRMTN_SALE_START_TM-Uniqueness",
+      "expression" : {
+        "operator" : "Uniqueness",
+        "config" : {
+          "column" : "PRMTN_SALE_START_TM"
+        }
+      }
+    }, {
+      "metric-name" : "PICTURE_URL-MaxLength",
+      "expression" : {
+        "operator" : "MaxLength",
+        "config" : {
+          "column" : "PICTURE_URL"
+        }
+      }
+    }, {
+      "metric-name" : "PICTURE_URL-MinLength",
+      "expression" : {
+        "operator" : "MinLength",
+        "config" : {
+          "column" : "PICTURE_URL"
+        }
+      }
+    }, {
+      "metric-name" : "PICTURE_URL-Uniqueness",
+      "expression" : {
+        "operator" : "Uniqueness",
+        "config" : {
+          "column" : "PICTURE_URL"
+        }
+      }
+    } ]
+  } ],
+  "sinks" : [ {
+    "name" : "es-sink",
+    "type" : "batch.elasticsearch",
+    "config" : {
+      "endpoint" : "https://esdataprofiler-datarno.vip.ebay.com",
+      "password" : "2020MakeItHappen$ToTBZ",
+      "index-prefix" : "profiling-qa-",
+      "username" : "_DATAQUALITY_ES01"
+    }
+  } ]
+}

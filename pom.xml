@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.ebay</groupId>
+    <artifactId>batch_data_profiling</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>sharedLib</module>
+        <module>profilingjob</module>
+        <module>profiling-svc</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+
+        <encoding>UTF-8</encoding>
+
+        <slf4j.version>1.7.25</slf4j.version>
+
+        <!-- Scala -->
+        <scala-211.major.version>2.11</scala-211.major.version>
+        <scala.major.version>${scala-211.major.version}</scala.major.version>
+        <scala.version>${scala.major.version}.10</scala.version>
+        <scala-maven-plugin.version>4.4.0</scala-maven-plugin.version>
+
+        <!-- Spark -->
+        <spark.major.version>2.3</spark.major.version>
+        <spark-23.version>2.3.2</spark-23.version>
+        <spark.version>${spark-23.version}</spark.version>
+
+        <deequ.version>1.1.0_spark-${spark.major.version}-scala-${scala.major.version}</deequ.version>
+
+        <junit.jupiter.version>5.6.3</junit.jupiter.version>
+        <lombok.version>1.18.16</lombok.version>
+        <jackson.version>2.12.1</jackson.version>
+        <elasticsearch.version>7.5.1</elasticsearch.version>
+        <apache.common.version>3.12.0</apache.common.version>
+        <!-- by default dont' deploy modules to repo, set it to 'false' in submodule pom.xml if it should be deployed. -->
+        <maven.deploy.skip>true</maven.deploy.skip>
+        <spark.jar.scope>compile</spark.jar.scope>
+        <maven-surefire-plugin.version>2.22.0</maven-surefire-plugin.version>
+        <maven-failsafe-plugin.version>2.22.0</maven-failsafe-plugin.version>
+        <spring-boot.repackage.skip>true</spring-boot.repackage.skip>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.scala-lang</groupId>
+                <artifactId>scala-library</artifactId>
+                <version>${scala.version}</version>
+                <scope>${spark.jar.scope}</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.spark</groupId>
+                <artifactId>spark-core_${scala.major.version}</artifactId>
+                <version>${spark.version}</version>
+                <scope>${spark.jar.scope}</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.spark</groupId>
+                <artifactId>spark-sql_${scala.major.version}</artifactId>
+                <version>${spark.version}</version>
+                <scope>${spark.jar.scope}</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.scalanlp</groupId>
+                <artifactId>breeze_${scala.major.version}</artifactId>
+                <version>0.13.2</version>
+                <scope>compile</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+                <scope>compile</scope>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+                <scope>compile</scope>
+            </dependency>
+
+
+            <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${apache.common.version}</version>
+                <scope>compile</scope>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>30.1-jre</version>
+                <scope>compile</scope>
+            </dependency>
+
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.module</groupId>
+                <artifactId>jackson-module-scala_${scala.major.version}</artifactId>
+                <version>${jackson.version}</version>
+                <scope>compile</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.elasticsearch.client</groupId>
+                <artifactId>elasticsearch-rest-high-level-client</artifactId>
+                <version>${elasticsearch.version}</version>
+                <scope>compile</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.scalatest</groupId>
+                <artifactId>scalatest_${scala.major.version}</artifactId>
+                <version>3.1.2</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.scalamock</groupId>
+                <artifactId>scalamock_${scala.major.version}</artifactId>
+                <version>4.4.0</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-engine</artifactId>
+                <version>${junit.jupiter.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.scala-lang</groupId>
+                <artifactId>scala-compiler</artifactId>
+                <version>${scala.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>2.28.2</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.amazon.deequ</groupId>
+                <artifactId>deequ</artifactId>
+                <version>1.1.0_spark-2.3-scala-2.11</version>
+                <scope>compile</scope>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
+            <dependency>
+                <groupId>commons-codec</groupId>
+                <artifactId>commons-codec</artifactId>
+                <version>1.15</version>
+                <scope>compile</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>net.alchim31.maven</groupId>
+                        <artifactId>scala-maven-plugin</artifactId>
+                        <version>${scala-maven-plugin.version}</version>
+                        <configuration>
+                            <scalaCompatVersion>${scala.major.version}</scalaCompatVersion>
+                            <scalaVersion>${scala.version}</scalaVersion>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>scala-compile-first</id>
+                                <phase>process-resources</phase>
+                                <goals>
+                                    <goal>add-source</goal>
+                                    <goal>compile</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>scala-test-compile</id>
+                                <phase>process-test-resources</phase>
+                                <goals>
+                                    <goal>testCompile</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>doc-jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>spark-2.3-scala-2.11</id>
+            <properties>
+                <spark.major.version>2.3</spark.major.version>
+                <spark.version>${spark-23.version}</spark.version>
+                <scala.major.version>${scala-211.major.version}</scala.major.version>
+                <scala.version>${scala.major.version}.10</scala.version>
+            </properties>
+        </profile>
+        <profile>
+            <id>hercules</id>
+            <properties>
+                <spark.major.version>2.3</spark.major.version>
+                <spark.version>${spark-23.version}</spark.version>
+                <scala.major.version>${scala-211.major.version}</scala.major.version>
+                <scala.version>${scala.major.version}.10</scala.version>
+                <spark.jar.scope>provided</spark.jar.scope>
+            </properties>
+        </profile>
+        <profile>
+            <id>local</id>
+            <properties>
+                <spark.major.version>2.3</spark.major.version>
+                <spark.version>${spark-23.version}</spark.version>
+                <scala.major.version>${scala-211.major.version}</scala.major.version>
+                <scala.version>${scala.major.version}.10</scala.version>
+                <spark.jar.scope>compile</spark.jar.scope>
+            </properties>
+        </profile>
+    </profiles>
+
+
+    <repositories>
+    </repositories>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ebay-qa-server</id>
+            <url>https://ebaycentral.qa.ebay.com/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+</project>

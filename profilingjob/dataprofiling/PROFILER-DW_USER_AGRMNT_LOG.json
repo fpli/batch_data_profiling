@@ -1,0 +1,205 @@
+{
+  "name" : "PROFILER-DW_USER_AGRMNT_LOG",
+  "datasources" : [ {
+    "name" : "DW_USER_AGRMNT_LOG",
+    "type" : "batch.table",
+    "config" : {
+      "tableName" : "DW_USER_AGRMNT_LOG"
+    }
+  } ],
+  "rules" : [ {
+    "name" : "default_rule",
+    "type" : "batch.profiler",
+    "config" : {
+      "schedule_type" : "d",
+      "custom_key" : "custom_value"
+    },
+    "profilers" : [ {
+      "metric-name" : "AGRMNT_ACPT_TM-MaxLength",
+      "expression" : {
+        "operator" : "MaxLength",
+        "config" : {
+          "column" : "AGRMNT_ACPT_TM"
+        }
+      }
+    }, {
+      "metric-name" : "AGRMNT_ACPT_TM-MinLength",
+      "expression" : {
+        "operator" : "MinLength",
+        "config" : {
+          "column" : "AGRMNT_ACPT_TM"
+        }
+      }
+    }, {
+      "metric-name" : "CRE_USER-MaxLength",
+      "expression" : {
+        "operator" : "MaxLength",
+        "config" : {
+          "column" : "CRE_USER"
+        }
+      }
+    }, {
+      "metric-name" : "CRE_USER-MinLength",
+      "expression" : {
+        "operator" : "MinLength",
+        "config" : {
+          "column" : "CRE_USER"
+        }
+      }
+    }, {
+      "metric-name" : "SRC_CRE_TM-MaxLength",
+      "expression" : {
+        "operator" : "MaxLength",
+        "config" : {
+          "column" : "SRC_CRE_TM"
+        }
+      }
+    }, {
+      "metric-name" : "SRC_CRE_TM-MinLength",
+      "expression" : {
+        "operator" : "MinLength",
+        "config" : {
+          "column" : "SRC_CRE_TM"
+        }
+      }
+    }, {
+      "metric-name" : "SRC_LAST_MDFD_TM-MaxLength",
+      "expression" : {
+        "operator" : "MaxLength",
+        "config" : {
+          "column" : "SRC_LAST_MDFD_TM"
+        }
+      }
+    }, {
+      "metric-name" : "SRC_LAST_MDFD_TM-MinLength",
+      "expression" : {
+        "operator" : "MinLength",
+        "config" : {
+          "column" : "SRC_LAST_MDFD_TM"
+        }
+      }
+    }, {
+      "metric-name" : "UPD_USER-MaxLength",
+      "expression" : {
+        "operator" : "MaxLength",
+        "config" : {
+          "column" : "UPD_USER"
+        }
+      }
+    }, {
+      "metric-name" : "UPD_USER-MinLength",
+      "expression" : {
+        "operator" : "MinLength",
+        "config" : {
+          "column" : "UPD_USER"
+        }
+      }
+    }, {
+      "metric-name" : "AGRMNT_ID-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "AGRMNT_ID"
+        }
+      }
+    }, {
+      "metric-name" : "AGRMNT_ID-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "AGRMNT_ID"
+        }
+      }
+    }, {
+      "metric-name" : "AGRMNT_ID-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "AGRMNT_ID"
+        }
+      }
+    }, {
+      "metric-name" : "AGRMNT_VW_CNT-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "AGRMNT_VW_CNT"
+        }
+      }
+    }, {
+      "metric-name" : "AGRMNT_VW_CNT-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "AGRMNT_VW_CNT"
+        }
+      }
+    }, {
+      "metric-name" : "AGRMNT_VW_CNT-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "AGRMNT_VW_CNT"
+        }
+      }
+    }, {
+      "metric-name" : "SITE_ID-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "SITE_ID"
+        }
+      }
+    }, {
+      "metric-name" : "SITE_ID-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "SITE_ID"
+        }
+      }
+    }, {
+      "metric-name" : "SITE_ID-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "SITE_ID"
+        }
+      }
+    }, {
+      "metric-name" : "USER_ID-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "USER_ID"
+        }
+      }
+    }, {
+      "metric-name" : "USER_ID-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "USER_ID"
+        }
+      }
+    }, {
+      "metric-name" : "USER_ID-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "USER_ID"
+        }
+      }
+    } ]
+  } ],
+  "sinks" : [ {
+    "name" : "es-sink",
+    "type" : "batch.elasticsearch",
+    "config" : {
+      "endpoint" : "https://esdataprofiler-datarno.vip.ebay.com",
+      "password" : "2020MakeItHappen$ToTBZ",
+      "index-prefix" : "profiling-qa-",
+      "username" : "_DATAQUALITY_ES01"
+    }
+  } ]
+}

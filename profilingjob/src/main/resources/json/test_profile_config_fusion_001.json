@@ -1,0 +1,61 @@
+{
+  "name": "people_profiler_01",
+  "datasources": [
+    {
+      "name": "dw_user",
+      "type": "batch.csv",
+      "config": {
+        "header": false,
+        "file": "/tmp/1.csv",
+        "columns": [
+          "name",
+          "age"
+        ]
+      }
+    }
+  ],
+  "rules": [
+    {
+      "name": "default_rule",
+      "type": "batch.profiler",
+      "config": {
+        "custom_key": "custom_value"
+      },
+      "profilers": [
+        {
+          "metric-name": "max_age",
+          "expression": {
+            "operator": "Maximum",
+            "config": {
+              "column": "age_plus_100"
+            }
+          },
+          "filter": "age_plus_100 > 0",
+          "transformations": [
+            {
+              "alias": "age_plus_100",
+              "expression": {
+                "operator": "SQL",
+                "config": {
+                  "text": "age + 100"
+                }
+              }
+            }
+          ],
+          "dimensions": [
+            "not_required"
+          ],
+          "comment": "Test - calculate max of age."
+        },
+        {
+          "metric-name": "failure_metric",
+          "expression": {
+            "operator": "Size"
+          },
+          "filter": "age > 0",
+          "comment": "This is an example of bad metric definition"
+        }
+      ]
+    }
+  ]
+}

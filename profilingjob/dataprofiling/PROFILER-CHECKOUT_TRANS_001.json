@@ -1,0 +1,76 @@
+{
+  "name" : "PROFILER-CHECKOUT_TRANS_001",
+  "datasources" : [ {
+    "name" : "GDW_TABLES.DW_CHECKOUT_TRANS",
+    "type" : "batch.table",
+    "config" : {
+      "tableName" : "GDW_TABLES.DW_CHECKOUT_TRANS",
+      "dateFilter" : {
+        "duration" : 1,
+        "ago" : 2,
+        "time_unit" : "d",
+        "date_format" : "yyyy-MM-dd",
+        "filter_clause" : "CREATED_DT between ${FROM_DATE} and ${TO_DATE}"
+      }
+    }
+  } ],
+  "rules" : [ {
+    "name" : "default_rule",
+    "type" : "batch.profiler",
+    "config" : {
+      "schedule_type" : "d",
+      "custom_key" : "custom_value"
+    },
+    "profilers" : [ {
+      "metric-name" : "*-Size",
+      "expression" : {
+        "operator" : "Size",
+        "config" : {
+          "column" : "*"
+        }
+      }
+    }, {
+      "metric-name" : "TOTAL_AMOUNT_-Maximum",
+      "expression" : {
+        "operator" : "Maximum",
+        "config" : {
+          "column" : "TOTAL_AMOUNT_"
+        }
+      }
+    }, {
+      "metric-name" : "TOTAL_AMOUNT_-Minimum",
+      "expression" : {
+        "operator" : "Minimum",
+        "config" : {
+          "column" : "TOTAL_AMOUNT_"
+        }
+      }
+    }, {
+      "metric-name" : "TOTAL_AMOUNT_-Mean",
+      "expression" : {
+        "operator" : "Mean",
+        "config" : {
+          "column" : "TOTAL_AMOUNT_"
+        }
+      }
+    }, {
+      "metric-name" : "TOTAL_AMOUNT_-Sum",
+      "expression" : {
+        "operator" : "Sum",
+        "config" : {
+          "column" : "TOTAL_AMOUNT_"
+        }
+      }
+    } ]
+  } ],
+  "sinks" : [ {
+    "name" : "es-sink",
+    "type" : "batch.elasticsearch",
+    "config" : {
+      "endpoint" : "https://esdataprofiler-datarno.vip.ebay.com",
+      "password" : "2020MakeItHappen$ToTBZ",
+      "index-prefix" : "profiling-qa-",
+      "username" : "_DATAQUALITY_ES01"
+    }
+  } ]
+}

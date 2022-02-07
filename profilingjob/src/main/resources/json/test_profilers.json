@@ -1,0 +1,98 @@
+{
+  "name": "TEST_Profilers",
+  "datasources": [
+    {
+      "name": "DW_LISTING",
+      "type": "DEFAULT",
+      "customConfig": {
+        "platform": "hercules",
+        "others": {
+          "table_name": "dw_listing"
+        }
+      }
+    }
+  ],
+  "configList": [
+    {
+      "name": "Size_OF_A",
+      "profiler": "Size",
+      "params": {
+        "paramList": [
+          {
+            "key": "where",
+            "value": {
+              "type": "String",
+              "value": "age > 20"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "MAX_OF_A",
+      "profiler": "Maximum",
+      "params": {
+        "paramList": [
+          {
+            "key": "column",
+            "value": {
+              "type": "String",
+              "value": "age"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "MIN_OF_A",
+      "profiler": "Minimum",
+      "params": {
+        "paramList": [
+          {
+            "key": "where",
+            "value": {
+              "type": "String",
+              "value": "age <= 20"
+            }
+          },
+          {
+            "key": "column",
+            "value": {
+              "type": "String",
+              "value": "age"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "Quantiles_Of_Age",
+      "profiler": "ApproxQuantiles",
+      "params": {
+        "paramList": [
+          {
+            "key": "column",
+            "value": {
+              "type": "String",
+              "value": "age"
+            }
+          },
+          {
+            "key": "quantiles",
+            "value": {
+              "type": "String",
+              "value": "0.1,0.2,0.5,0.9,0.99"
+            }
+          },
+          {
+            "key": "relativeError",
+            "value": {
+              "type": "Double",
+              "value": 0.01
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

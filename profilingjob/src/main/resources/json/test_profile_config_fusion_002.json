@@ -1,0 +1,59 @@
+{
+  "name": "dw_users_info_01",
+  "datasources": [
+    {
+      "name": "gdw_tables.dw_users_info",
+      "type": "batch.table",
+      "config": {
+        "tableName": "gdw_tables.dw_users_info"
+      }
+    }
+  ],
+  "rules": [
+    {
+      "name": "default_rule",
+      "type": "batch.profiler",
+      "config": {
+        "custom_key": "custom_value"
+      },
+      "profilers": [
+        {
+          "metric-name": "max_user_site_id",
+          "expression": {
+            "operator": "Maximum",
+            "config": {
+              "column": "user_site_id_plus_100"
+            }
+          },
+          "filter": "user_site_id_plus_100 > 0",
+          "transformations": [
+            {
+              "alias": "user_site_id_plus_100",
+              "expression": {
+                "operator": "SQL",
+                "config": {
+                  "text": "user_site_id + 100"
+                }
+              }
+            }
+          ],
+          "dimensions": [
+            "not_required"
+          ],
+          "comment": "Test - calculate max of user_site_id."
+        }
+      ]
+    }
+  ],
+  "sinks": [
+    {
+      "name": "default_sink",
+      "type": "batch.console",
+      "config": {
+        "row-limit": 100,
+        "stderr": false,
+        "json-format": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,189 @@
+{
+  "name" : "PROFILER-STR-UniqMinMax",
+  "datasources" : [ {
+    "name" : "GDW_TABLES.DW_LSTG_ITEM",
+    "type" : "batch.table",
+    "config" : {
+      "tableName" : "GDW_TABLES.DW_LSTG_ITEM"
+    }
+  } ],
+  "rules" : [ {
+    "name" : "default_rule",
+    "type" : "batch.profiler",
+    "config" : {
+      "schedule_type" : "d",
+      "custom_key" : "custom_value"
+    },
+    "profilers" : [ {
+      "metric-name" : "AUCT_TITL-MaxLength",
+      "expression" : {
+        "operator" : "MaxLength",
+        "config" : {
+          "column" : "AUCT_TITL"
+        }
+      }
+    }, {
+      "metric-name" : "AUCT_TITL-MinLength",
+      "expression" : {
+        "operator" : "MinLength",
+        "config" : {
+          "column" : "AUCT_TITL"
+        }
+      }
+    }, {
+      "metric-name" : "BOLD_TITLE-MaxLength",
+      "expression" : {
+        "operator" : "MaxLength",
+        "config" : {
+          "column" : "BOLD_TITLE"
+        }
+      }
+    }, {
+      "metric-name" : "BOLD_TITLE-MinLength",
+      "expression" : {
+        "operator" : "MinLength",
+        "config" : {
+          "column" : "BOLD_TITLE"
+        }
+      }
+    }, {
+      "metric-name" : "CRE_USER-MaxLength",
+      "expression" : {
+        "operator" : "MaxLength",
+        "config" : {
+          "column" : "CRE_USER"
+        }
+      }
+    }, {
+      "metric-name" : "CRE_USER-MinLength",
+      "expression" : {
+        "operator" : "MinLength",
+        "config" : {
+          "column" : "CRE_USER"
+        }
+      }
+    }, {
+      "metric-name" : "CUST_REF_CODE-MaxLength",
+      "expression" : {
+        "operator" : "MaxLength",
+        "config" : {
+          "column" : "CUST_REF_CODE"
+        }
+      }
+    }, {
+      "metric-name" : "CUST_REF_CODE-MinLength",
+      "expression" : {
+        "operator" : "MinLength",
+        "config" : {
+          "column" : "CUST_REF_CODE"
+        }
+      }
+    }, {
+      "metric-name" : "FEATURED-MaxLength",
+      "expression" : {
+        "operator" : "MaxLength",
+        "config" : {
+          "column" : "FEATURED"
+        }
+      }
+    }, {
+      "metric-name" : "FEATURED-MinLength",
+      "expression" : {
+        "operator" : "MinLength",
+        "config" : {
+          "column" : "FEATURED"
+        }
+      }
+    }, {
+      "metric-name" : "GALLERY_URL-MaxLength",
+      "expression" : {
+        "operator" : "MaxLength",
+        "config" : {
+          "column" : "GALLERY_URL"
+        }
+      }
+    }, {
+      "metric-name" : "GALLERY_URL-MinLength",
+      "expression" : {
+        "operator" : "MinLength",
+        "config" : {
+          "column" : "GALLERY_URL"
+        }
+      }
+    }, {
+      "metric-name" : "HOST_IP_ADDR-MaxLength",
+      "expression" : {
+        "operator" : "MaxLength",
+        "config" : {
+          "column" : "HOST_IP_ADDR"
+        }
+      }
+    }, {
+      "metric-name" : "HOST_IP_ADDR-MinLength",
+      "expression" : {
+        "operator" : "MinLength",
+        "config" : {
+          "column" : "HOST_IP_ADDR"
+        }
+      }
+    }, {
+      "metric-name" : "ITEM_LOC-MaxLength",
+      "expression" : {
+        "operator" : "MaxLength",
+        "config" : {
+          "column" : "ITEM_LOC"
+        }
+      }
+    }, {
+      "metric-name" : "ITEM_LOC-MinLength",
+      "expression" : {
+        "operator" : "MinLength",
+        "config" : {
+          "column" : "ITEM_LOC"
+        }
+      }
+    }, {
+      "metric-name" : "ITEM_PRPTY_KEY_TXT-MaxLength",
+      "expression" : {
+        "operator" : "MaxLength",
+        "config" : {
+          "column" : "ITEM_PRPTY_KEY_TXT"
+        }
+      }
+    }, {
+      "metric-name" : "ITEM_PRPTY_KEY_TXT-MinLength",
+      "expression" : {
+        "operator" : "MinLength",
+        "config" : {
+          "column" : "ITEM_PRPTY_KEY_TXT"
+        }
+      }
+    }, {
+      "metric-name" : "ITEM_ZIP-MaxLength",
+      "expression" : {
+        "operator" : "MaxLength",
+        "config" : {
+          "column" : "ITEM_ZIP"
+        }
+      }
+    }, {
+      "metric-name" : "ITEM_ZIP-MinLength",
+      "expression" : {
+        "operator" : "MinLength",
+        "config" : {
+          "column" : "ITEM_ZIP"
+        }
+      }
+    } ]
+  } ],
+  "sinks" : [ {
+    "name" : "es-sink",
+    "type" : "batch.elasticsearch",
+    "config" : {
+      "endpoint" : "https://esdataprofiler-datarno.vip.ebay.com",
+      "password" : "2020MakeItHappen$ToTBZ",
+      "index-prefix" : "profiling-qa-",
+      "username" : "_DATAQUALITY_ES01"
+    }
+  } ]
+}
