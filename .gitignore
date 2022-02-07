@@ -1,3 +1,5 @@
 /profilingjob/target/
 /sharedLib/target/
 /profiling-svc/target/
+/.idea/
+/spark-warehouse/
