@@ -22,12 +22,17 @@ object DataProfilingApplication extends TApplication with Loggable{
       opt[String]('t', "date")
         .optional()
         .action((n, c) => c.copy(date = n))
-        .text("reference time when the job starts"),
+        .text("which day to run, e.g: '20220205'"),
 
       opt[String]('e', "env")
         .optional()
         .action((n, c) => c.copy(env = n))
-        .text("reference time when the job starts")
+        .text("which env to use: qa or prod"),
+
+      opt[String]('r', "request")
+        .optional()
+        .action((n, c) => c.copy(request = n))
+        .text("which request to perforce")
     )
   }
 
@@ -50,4 +55,4 @@ object DataProfilingApplication extends TApplication with Loggable{
 
 }
 
-case class Parameters(isLocal: Boolean = false, date: String = "", env: String = "prod")
+case class Parameters(isLocal: Boolean = false, date: String = "", env: String = "prod", request: String = "-1")

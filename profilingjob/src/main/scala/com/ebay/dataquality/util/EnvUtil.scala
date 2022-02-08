@@ -21,6 +21,12 @@ object EnvUtil {
     )
   )
 
+  private val requestMap: Map[String, String] = Map(
+    "0" -> "page_nonBot",
+    "1" -> "page_bot",
+    "2" -> ""
+  )
+
   def put(sparkSession: SparkSession): Unit = {
     sparkLocal.set(sparkSession)
   }

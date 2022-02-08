@@ -6,7 +6,6 @@ import com.ebay.dataquality.profiling.Loggable
 import com.ebay.dataquality.service.DataProfilingService
 import com.ebay.dataquality.util.EnvUtil
 
-import java.sql.DriverManager
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -21,7 +20,9 @@ class DataProfilingController extends TController with Loggable{
     try {
       if (option.nonEmpty){
         val parameters = option.get
-
+        if (parameters.request == "-1"){
+          System.exit(-1)
+        }
         val date = parameters.date
         if (date.nonEmpty){
           dateTimeFormatter.parse(date)
@@ -36,14 +37,16 @@ class DataProfilingController extends TController with Loggable{
         }
         val envMap = maybeMap.get
 
-        Class.forName(envMap("driverClass"))
-        val conn = DriverManager.getConnection(envMap("jdbcURL"), envMap("user"), envMap("password"))
-        val preparedStatement = conn.prepareStatement("delete from ubi_event_page where DT = ?")
-        preparedStatement.setString(1, yesterday)
-        preparedStatement.executeUpdate()
+        log.info("request: "+ parameters.request)
 
         // do biz
-        dataProfilingService.dataAnalysis(yesterday, envMap)
+        parameters.request match {
+          case "0" =>
+            dataProfilingService.dataAnalysis(yesterday, envMap)
+          case "1" =>
+            dataProfilingService.dataAnalysis1(yesterday, envMap)
+          case _ => System.exit(-1)
+        }
       }
     } catch {
       case e: Exception =>
@@ -52,5 +55,7 @@ class DataProfilingController extends TController with Loggable{
     }
 
   }
+
+
 
 }
