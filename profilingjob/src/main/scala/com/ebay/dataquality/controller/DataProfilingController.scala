@@ -45,12 +45,16 @@ class DataProfilingController extends TController with Loggable {
             dataProfilingService.dataAnalysis(yesterday, envMap)
           case "1" =>
             dataProfilingService.dataAnalysis1(yesterday, envMap)
+          case "2" =>
+            dataProfilingService.dataAnalysis2(yesterday, envMap)
+          case "3" =>
+            dataProfilingService.dataAnalysis3(yesterday, envMap)
           case _ => System.exit(-1)
         }
       }
     } catch {
       case e: Exception =>
-        log.error("Error: " + e.getMessage())
+        log.error("Error: " + e.getMessage)
         e.printStackTrace()
     }
 
