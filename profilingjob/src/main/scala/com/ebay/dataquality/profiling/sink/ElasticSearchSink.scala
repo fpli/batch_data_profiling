@@ -1,8 +1,8 @@
 package com.ebay.dataquality.profiling.sink
 
 import com.ebay.dataquality.metric.{ElasticSearchProfilerResultRepository, ProfilerResult}
-import com.ebay.dataquality.profiling.Loggable
 import com.ebay.dataquality.profiling.sink.BatchSinkFactory.elasticSearchSinkConfigType
+import com.ebay.dataquality.util.Loggable
 import com.ebay.dataquality.{DynamicParameters, KeyValueParameters}
 import com.fasterxml.jackson.annotation.JsonProperty
 import org.apache.http.HttpHost

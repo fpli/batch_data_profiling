@@ -7,6 +7,7 @@ import com.ebay.dataquality.config.ProfilerConfig
 import com.ebay.dataquality.metric.{JDoubleMetric, ProfilerResult}
 import com.ebay.dataquality.profiling.sink.SinkSupport
 import com.ebay.dataquality.profiling.source.SourceSupport
+import com.ebay.dataquality.util.Loggable
 import org.apache.spark.sql.SparkSession
 
 /**

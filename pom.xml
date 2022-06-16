@@ -23,17 +23,18 @@
         <slf4j.version>1.7.25</slf4j.version>
 
         <!-- Scala -->
-        <scala-211.major.version>2.11</scala-211.major.version>
-        <scala.major.version>${scala-211.major.version}</scala.major.version>
+        <scala-212.major.version>2.12</scala-212.major.version>
+        <scala.major.version>${scala-212.major.version}</scala.major.version>
         <scala.version>${scala.major.version}.10</scala.version>
         <scala-maven-plugin.version>4.4.0</scala-maven-plugin.version>
 
         <!-- Spark -->
-        <spark.major.version>2.3</spark.major.version>
-        <spark-23.version>2.3.2</spark-23.version>
-        <spark.version>${spark-23.version}</spark.version>
+        <spark.major.version>3.1</spark.major.version>
+        <spark-31.version>3.1.1</spark-31.version>
+        <spark.version>${spark-31.version}</spark.version>
 
-        <deequ.version>1.1.0_spark-${spark.major.version}-scala-${scala.major.version}</deequ.version>
+        <!--2.0.0-spark-3.1-->
+        <deequ.version>2.0.0-spark-${spark.major.version}</deequ.version>
 
         <junit.jupiter.version>5.6.3</junit.jupiter.version>
         <lombok.version>1.18.16</lombok.version>
@@ -168,7 +169,7 @@
             <dependency>
                 <groupId>com.amazon.deequ</groupId>
                 <artifactId>deequ</artifactId>
-                <version>1.1.0_spark-2.3-scala-2.11</version>
+                <version>${deequ.version}</version>
                 <scope>compile</scope>
             </dependency>
             <!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
@@ -222,20 +223,20 @@
             </build>
         </profile>
         <profile>
-            <id>spark-2.3-scala-2.11</id>
+            <id>spark-3.1-scala-2.12</id>
             <properties>
-                <spark.major.version>2.3</spark.major.version>
-                <spark.version>${spark-23.version}</spark.version>
-                <scala.major.version>${scala-211.major.version}</scala.major.version>
+                <spark.major.version>3.1</spark.major.version>
+                <spark.version>${spark-31.version}</spark.version>
+                <scala.major.version>${scala-212.major.version}</scala.major.version>
                 <scala.version>${scala.major.version}.10</scala.version>
             </properties>
         </profile>
         <profile>
             <id>hercules</id>
             <properties>
-                <spark.major.version>2.3</spark.major.version>
-                <spark.version>${spark-23.version}</spark.version>
-                <scala.major.version>${scala-211.major.version}</scala.major.version>
+                <spark.major.version>3.1</spark.major.version>
+                <spark.version>${spark-31.version}</spark.version>
+                <scala.major.version>${scala-212.major.version}</scala.major.version>
                 <scala.version>${scala.major.version}.10</scala.version>
                 <spark.jar.scope>provided</spark.jar.scope>
             </properties>
@@ -243,9 +244,9 @@
         <profile>
             <id>local</id>
             <properties>
-                <spark.major.version>2.3</spark.major.version>
-                <spark.version>${spark-23.version}</spark.version>
-                <scala.major.version>${scala-211.major.version}</scala.major.version>
+                <spark.major.version>3.1</spark.major.version>
+                <spark.version>${spark-31.version}</spark.version>
+                <scala.major.version>${scala-212.major.version}</scala.major.version>
                 <scala.version>${scala.major.version}.10</scala.version>
                 <spark.jar.scope>compile</spark.jar.scope>
             </properties>
@@ -254,7 +255,53 @@
 
 
     <repositories>
+        <repository>
+            <id>ebaycentral-release</id>
+            <url>http://ebaycentral.qa.ebay.com/content/repositories/releases/</url>
+        </repository>
+        <repository>
+            <id>ebaycentral-snapshots</id>
+            <url>http://ebaycentral.qa.ebay.com/content/repositories/snapshots/</url>
+        </repository>
+        <repository>
+            <id>raptor-thirdparty</id>
+            <url>https://ebaycentral.corp.ebay.com/content/repositories/thirdparty</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>apache.snapshots</id>
+            <name>Apache Development Snapshot Repository</name>
+            <url>https://repository.apache.org/content/repositories/snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>OttoGroup</id>
+            <name>OttoGroup</name>
+            <url>https://dl.bintray.com/ottogroup/maven/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>mvnrepository_id</id>
+            <name>mvnrepository.com</name>
+            <url>https://repo1.maven.org/maven2/</url>
+        </repository>
     </repositories>
+
     <distributionManagement>
         <snapshotRepository>
             <id>ebay-qa-server</id>

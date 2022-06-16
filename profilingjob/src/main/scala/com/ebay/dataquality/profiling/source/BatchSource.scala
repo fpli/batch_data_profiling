@@ -1,6 +1,6 @@
 package com.ebay.dataquality.profiling.source
 
-import com.ebay.dataquality.profiling.Loggable
+import com.ebay.dataquality.util.Loggable
 import com.ebay.dataquality.{BaseObjectHasDynamicConfig, DynamicParameters}
 import com.fasterxml.jackson.core.`type`.TypeReference
 import org.apache.spark.sql.{DataFrame, SparkSession}

@@ -2,10 +2,9 @@ package com.ebay.dataquality.application
 
 import com.ebay.dataquality.common.TApplication
 import com.ebay.dataquality.controller.DataProfilingController
-import com.ebay.dataquality.profiling.Loggable
 import scopt.{OParser, OParserBuilder}
 
-object DataProfilingApplication extends TApplication with Loggable{
+object DataProfilingApplication extends TApplication {
 
   private val builder: OParserBuilder[Parameters] = OParser.builder[Parameters]
 

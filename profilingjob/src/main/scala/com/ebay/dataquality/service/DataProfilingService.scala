@@ -2,12 +2,11 @@ package com.ebay.dataquality.service
 
 import com.ebay.dataquality.common.TService
 import com.ebay.dataquality.dao.DataProfilingDao
-import com.ebay.dataquality.profiling.Loggable
 import org.apache.spark.sql.SaveMode
 
 import java.sql.DriverManager
 
-class DataProfilingService extends TService with Loggable{
+class DataProfilingService extends TService {
 
   private val dataProfilingDao = new DataProfilingDao
 

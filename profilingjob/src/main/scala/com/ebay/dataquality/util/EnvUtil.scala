@@ -2,6 +2,7 @@ package com.ebay.dataquality.util
 
 import org.apache.spark.sql.SparkSession
 
+
 object EnvUtil {
 
   private val sparkLocal = new ThreadLocal[SparkSession]

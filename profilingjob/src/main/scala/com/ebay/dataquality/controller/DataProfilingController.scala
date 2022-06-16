@@ -2,20 +2,19 @@ package com.ebay.dataquality.controller
 
 import com.ebay.dataquality.application.Parameters
 import com.ebay.dataquality.common.TController
-import com.ebay.dataquality.profiling.Loggable
 import com.ebay.dataquality.service.DataProfilingService
-import com.ebay.dataquality.util.EnvUtil
+import com.ebay.dataquality.util.{EnvUtil, Loggable}
 
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-class DataProfilingController extends TController with Loggable {
+class DataProfilingController extends TController with Loggable{
 
   private val dataProfilingService = new DataProfilingService
 
   override def dispatch(option: Option[Parameters]): Unit = {
     val dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd")
-    var yesterday = LocalDate.now().minusDays(2).format(dateTimeFormatter)
+    var yesterday = LocalDate.now().minusDays(1).format(dateTimeFormatter)
     var env = "prod"
     try {
       if (option.nonEmpty){

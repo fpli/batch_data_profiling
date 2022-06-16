@@ -6,6 +6,7 @@ import com.ebay.dataquality.metric.{JKeyedDoubleMetric, ProfilerResult}
 import com.ebay.dataquality.profiling.ProfilingJobA.checkConfigFusion
 import com.ebay.dataquality.profiling.sink.SinkSupport
 import com.ebay.dataquality.profiling.source.SourceSupport
+import com.ebay.dataquality.util.Loggable
 import org.apache.spark.sql.{Row, SaveMode, SparkSession}
 
 import java.time.LocalDate

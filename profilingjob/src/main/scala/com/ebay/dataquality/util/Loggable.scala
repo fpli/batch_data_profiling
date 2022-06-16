@@ -1,4 +1,4 @@
-package com.ebay.dataquality.profiling
+package com.ebay.dataquality.util
 
 import org.slf4j.{Logger, LoggerFactory}
 

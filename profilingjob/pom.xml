@@ -19,11 +19,18 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-sql_${scala.major.version}</artifactId>
+            <scope>${spark.jar.scope}</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.amazon.deequ/deequ -->
+        <dependency>
             <groupId>com.amazon.deequ</groupId>
             <artifactId>deequ</artifactId>
-            <version>1.1.0_spark-2.3-scala-2.11</version>
+            <version>${deequ.version}</version>
             <scope>compile</scope>
         </dependency>
+
         <dependency>
             <groupId>com.github.scopt</groupId>
             <artifactId>scopt_${scala.major.version}</artifactId>
@@ -164,7 +171,7 @@
                             <transformers>
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>com.ebay.dataquality.profiling.ProfilingJobA</mainClass>
+                                    <mainClass>com.ebay.dataquality.application.DataProfilingApplication</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>

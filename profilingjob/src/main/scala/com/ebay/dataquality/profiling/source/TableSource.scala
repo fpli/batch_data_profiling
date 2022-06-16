@@ -1,6 +1,5 @@
 package com.ebay.dataquality.profiling.source
 
-
 import com.ebay.dataquality.DynamicParameters
 import com.ebay.dataquality.profiling.source.BatchSourceFactory.tableConfig
 import org.apache.spark.sql.{DataFrame, SparkSession}
