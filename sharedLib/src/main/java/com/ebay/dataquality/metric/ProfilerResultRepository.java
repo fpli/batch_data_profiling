@@ -37,7 +37,7 @@ public interface ProfilerResultRepository {
      * @param to         -- end timestamp of the search range, inclusive, mandatory
      * @param configName --  config the profiler result generated from. - optional, empty of null means all
      * @param metricName -- name of the profiler result - optional
-     * @param operator   -- operator of the profiler result - opational
+     * @param operator   -- operator of the profiler result - optional
      * @param kvs        -- tags kv of the profiler result - optional
      * @return matched profiler results
      */
