@@ -12,14 +12,19 @@
       <option name="url" value="https://repo.maven.apache.org/maven2" />
     </remote-repository>
     <remote-repository>
-      <option name="id" value="ebaycentral-release" />
-      <option name="name" value="ebaycentral-release" />
-      <option name="url" value="http://ebaycentral.qa.ebay.com/content/repositories/releases/" />
+      <option name="id" value="raptor.aggregator" />
+      <option name="name" value="raptor.aggregator" />
+      <option name="url" value="https://ebaycentral.corp.ebay.com/content/groups/aggregator/" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="raptor.commercial" />
       <option name="name" value="raptor.commercial" />
       <option name="url" value="https://ebaycentral.qa.ebay.com/content/repositories/commercial" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="ebaycentral-release" />
+      <option name="name" value="ebaycentral-release" />
+      <option name="url" value="http://ebaycentral.qa.ebay.com/content/repositories/releases/" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="mvnrepository_id" />

@@ -12,108 +12,129 @@ class DataProfilingService extends TService {
 
   private val dataProfilingDao = new DataProfilingDao
 
-  override def dataAnalysis(yesterday: String, envMap: Map[String, String]): Any = {
-    // clean up if necessary
-    Class.forName(envMap("driverClass"))
-    val conn: Connection = DriverManager.getConnection(envMap("jdbcURL"), envMap("user"), envMap("password"))
-    val preparedStatement: PreparedStatement = conn.prepareStatement("delete from ubi_event_page where DT = ?")
-    preparedStatement.setString(1, yesterday)
-    preparedStatement.executeUpdate()
+  override def dataAnalysis(yesterday: String, envMapList: List[Map[String, String]]): Any = {
+    envMapList.foreach(envMap => {
+      // clean up if necessary
+      Class.forName(envMap("driverClass"))
+      val conn: Connection = DriverManager.getConnection(envMap("jdbcURL"), envMap("user"), envMap("password"))
+      val preparedStatement: PreparedStatement = conn.prepareStatement("delete from ubi_event_page where DT = ?")
+      preparedStatement.setString(1, yesterday)
+      preparedStatement.executeUpdate()
+    })
 
     val dataFrame: DataFrame = dataProfilingDao.executeSparkSQL(s"select PAGEID, count(*) total, DT from UBI_T.UBI_EVENT where DT = '${yesterday}' GROUP BY DT, PAGEID")
-    // 保存数据
-    dataFrame.write.mode(SaveMode.Append)
-      .format("jdbc")
-      .option("url", envMap("jdbcURL"))
-      .option("driver", envMap("driverClass"))
-      .option("user", envMap("user"))
-      .option("password", envMap("password"))
-      .option("dbtable", "ubi_event_page")
-      .save()
-  }
 
-  override def dataAnalysis1(yesterday: String, envMap: Map[String, String]): Any = {
-    // clean up if necessary
-    Class.forName(envMap("driverClass"))
-    val conn: Connection = DriverManager.getConnection(envMap("jdbcURL"), envMap("user"), envMap("password"))
-    val preparedStatement: PreparedStatement = conn.prepareStatement("delete from ubi_event_page_bot where DT = ?")
-    preparedStatement.setString(1, yesterday)
-    preparedStatement.executeUpdate()
-
-    val dataFrame: DataFrame = dataProfilingDao.executeSparkSQL(s"select PAGEID, count(*) total, DT from UBI_T.UBI_EVENT_SKEW where DT = '${yesterday}' GROUP BY DT, PAGEID")
-    // 保存数据
-    dataFrame.write.mode(SaveMode.Append)
-      .format("jdbc")
-      .option("url", envMap("jdbcURL"))
-      .option("driver", envMap("driverClass"))
-      .option("user", envMap("user"))
-      .option("password", envMap("password"))
-      .option("dbtable", "ubi_event_page_bot")
-      .save()
-  }
-
-  override def dataAnalysis2(yesterday: String, envMap: Map[String, String]): Any = {
-    // clean up if necessary
-    Class.forName(envMap("driverClass"))
-    val conn: Connection = DriverManager.getConnection(envMap("jdbcURL"), envMap("user"), envMap("password"))
-    val preparedStatement: PreparedStatement = conn.prepareStatement("delete from profiling_page_count where DT = ?")
-    preparedStatement.setString(1, yesterday)
-    preparedStatement.executeUpdate()
-
-    val dataFrame: DataFrame = dataProfilingDao.executeSparkSQL(s"select PAGEID page_id, count(*) total, DT from UBI_T.UBI_EVENT where DT = '${yesterday}' GROUP BY DT, PAGEID")
-    // 保存数据
-    dataFrame.write.mode(SaveMode.Append)
-      .format("jdbc")
-      .option("url", envMap("jdbcURL"))
-      .option("driver", envMap("driverClass"))
-      .option("user", envMap("user"))
-      .option("password", envMap("password"))
-      .option("dbtable", "profiling_page_count")
-      .save()
-  }
-
-  override def dataAnalysis3(yesterday: String, envMap: Map[String, String]): Any = {
-    // clean up if necessary
-    Class.forName(envMap("driverClass"))
-    val conn: Connection = DriverManager.getConnection(envMap("jdbcURL"), envMap("user"), envMap("password"))
-    val preparedStatement: PreparedStatement = conn.prepareStatement("delete from profiling_page_count_bot where DT = ?")
-    preparedStatement.setString(1, yesterday)
-    preparedStatement.executeUpdate()
-
-    val dataFrame: DataFrame = dataProfilingDao.executeSparkSQL(s"select PAGEID page_id, count(*) total, DT from UBI_T.UBI_EVENT_SKEW where DT = '${yesterday}' GROUP BY DT, PAGEID")
-    // 保存数据
-    dataFrame.write.mode(SaveMode.Append)
-      .format("jdbc")
-      .option("url", envMap("jdbcURL"))
-      .option("driver", envMap("driverClass"))
-      .option("user", envMap("user"))
-      .option("password", envMap("password"))
-      .option("dbtable", "profiling_page_count_bot")
-      .save()
-  }
-
-  override def profileTagSize(yesterday: String, envMap: Map[String, String], env: String = "prod"): Any = {
-    Class.forName(envMap("driverClass"))
-    val conn: Connection = DriverManager.getConnection(envMap("jdbcURL"), envMap("user"), envMap("password"))
-    val preparedStatement: PreparedStatement = conn.prepareStatement("delete from profiling_tag_size_attr where dt = ?")
-    preparedStatement.setString(1, yesterday)
-    preparedStatement.executeUpdate()
-
-    val prptyTagMap: Map[String, (String, String)] = dataProfilingDao.prptyTagMap
-    val classNameToAllowedValues: Map[String, ClassNameAllowedValues] = allowedValuesByClassName(prptyTagMap)
-    val specialTagAllowedValues = dataProfilingDao.specialTagValues()
-    val dataFrame: DataFrame = dataProfilingDao.profileTagSize(yesterday, classNameToAllowedValues, specialTagAllowedValues)
-    if ("qa".equals(env)){
-      dataFrame.cache()
+    envMapList.foreach(envMap => {
+      // 保存数据
       dataFrame.write.mode(SaveMode.Append)
         .format("jdbc")
         .option("url", envMap("jdbcURL"))
         .option("driver", envMap("driverClass"))
         .option("user", envMap("user"))
         .option("password", envMap("password"))
-        .option("dbtable", "profiling_tag_size_attr")
+        .option("dbtable", "ubi_event_page")
         .save()
-    }
+    })
+  }
+
+  override def dataAnalysis1(yesterday: String, envMapList: List[Map[String, String]]): Any = {
+    envMapList.foreach(envMap => {
+      // clean up if necessary
+      Class.forName(envMap("driverClass"))
+      val conn: Connection = DriverManager.getConnection(envMap("jdbcURL"), envMap("user"), envMap("password"))
+      val preparedStatement: PreparedStatement = conn.prepareStatement("delete from ubi_event_page_bot where DT = ?")
+      preparedStatement.setString(1, yesterday)
+      preparedStatement.executeUpdate()
+    })
+
+    val dataFrame: DataFrame = dataProfilingDao.executeSparkSQL(s"select PAGEID, count(*) total, DT from UBI_T.UBI_EVENT_SKEW where DT = '${yesterday}' GROUP BY DT, PAGEID")
+    envMapList.foreach(envMap => {
+      // 保存数据
+      dataFrame.write.mode(SaveMode.Append)
+        .format("jdbc")
+        .option("url", envMap("jdbcURL"))
+        .option("driver", envMap("driverClass"))
+        .option("user", envMap("user"))
+        .option("password", envMap("password"))
+        .option("dbtable", "ubi_event_page_bot")
+        .save()
+    })
+  }
+
+  override def dataAnalysis2(yesterday: String, envMapList: List[Map[String, String]]): Any = {
+    envMapList.foreach(envMap => {
+      // clean up if necessary
+      Class.forName(envMap("driverClass"))
+      val conn: Connection = DriverManager.getConnection(envMap("jdbcURL"), envMap("user"), envMap("password"))
+      val preparedStatement: PreparedStatement = conn.prepareStatement("delete from profiling_page_count where DT = ?")
+      preparedStatement.setString(1, yesterday)
+      preparedStatement.executeUpdate()
+    })
+
+    val dataFrame: DataFrame = dataProfilingDao.executeSparkSQL(s"select PAGEID page_id, count(*) total, DT from UBI_T.UBI_EVENT where DT = '${yesterday}' GROUP BY DT, PAGEID")
+    envMapList.foreach(envMap => {
+      // 保存数据
+      dataFrame.write.mode(SaveMode.Append)
+        .format("jdbc")
+        .option("url", envMap("jdbcURL"))
+        .option("driver", envMap("driverClass"))
+        .option("user", envMap("user"))
+        .option("password", envMap("password"))
+        .option("dbtable", "profiling_page_count")
+        .save()
+    })
+  }
+
+  override def dataAnalysis3(yesterday: String, envMapList: List[Map[String, String]]): Any = {
+    envMapList.foreach(envMap => {
+      // clean up if necessary
+      Class.forName(envMap("driverClass"))
+      val conn: Connection = DriverManager.getConnection(envMap("jdbcURL"), envMap("user"), envMap("password"))
+      val preparedStatement: PreparedStatement = conn.prepareStatement("delete from profiling_page_count_bot where DT = ?")
+      preparedStatement.setString(1, yesterday)
+      preparedStatement.executeUpdate()
+    })
+
+    val dataFrame: DataFrame = dataProfilingDao.executeSparkSQL(s"select PAGEID page_id, count(*) total, DT from UBI_T.UBI_EVENT_SKEW where DT = '${yesterday}' GROUP BY DT, PAGEID")
+    envMapList.foreach(envMap => {
+      // 保存数据
+      dataFrame.write.mode(SaveMode.Append)
+        .format("jdbc")
+        .option("url", envMap("jdbcURL"))
+        .option("driver", envMap("driverClass"))
+        .option("user", envMap("user"))
+        .option("password", envMap("password"))
+        .option("dbtable", "profiling_page_count_bot")
+        .save()
+    })
+  }
+
+  override def profileTagSize(yesterday: String, envMapList: List[Map[String, String]], env: String = "prod"): Any = {
+//    envMapList.foreach(envMap => {
+//      Class.forName(envMap("driverClass"))
+//      val conn: Connection = DriverManager.getConnection(envMap("jdbcURL"), envMap("user"), envMap("password"))
+//      val preparedStatement: PreparedStatement = conn.prepareStatement("delete from profiling_tag_size_attr where dt = ?")
+//      preparedStatement.setString(1, yesterday)
+//      preparedStatement.executeUpdate()
+//    })
+
+    val prptyTagMap: Map[String, (String, String)] = dataProfilingDao.prptyTagMap
+    val classNameToAllowedValues: Map[String, ClassNameAllowedValues] = allowedValuesByClassName(prptyTagMap)
+    val specialTagAllowedValues = dataProfilingDao.specialTagValues()
+    val dataFrame: DataFrame = dataProfilingDao.profileTagSize(yesterday, classNameToAllowedValues, specialTagAllowedValues)
+//    envMapList.foreach(envMap => {
+//      if ("qa".equals(env)){
+//        dataFrame.cache()
+//        dataFrame.write.mode(SaveMode.Append)
+//          .format("jdbc")
+//          .option("url", envMap("jdbcURL"))
+//          .option("driver", envMap("driverClass"))
+//          .option("user", envMap("user"))
+//          .option("password", envMap("password"))
+//          .option("dbtable", "profiling_tag_size_attr")
+//          .save()
+//      }
+//    })
 
     dataProfilingDao.dispatch(dataFrame, env, yesterday,"profiling_tag_size")
   }
@@ -144,29 +165,41 @@ class DataProfilingService extends TService {
     classNameToAllowedValues
   }
 
-  override def profileTagSizeBot(yesterday: String, envMap: Map[String, String], env: String = "prod"): Any = {
-    Class.forName(envMap("driverClass"))
-    val conn: Connection = DriverManager.getConnection(envMap("jdbcURL"), envMap("user"), envMap("password"))
-    val preparedStatement: PreparedStatement = conn.prepareStatement("delete from profiling_tag_size_attr_bot where dt = ?")
-    preparedStatement.setString(1, yesterday)
-    preparedStatement.executeUpdate()
+  override def profileTagSizeBot(yesterday: String, envMapList: List[Map[String, String]], env: String = "prod"): Any = {
+//    envMapList.foreach(envMap => {
+//      Class.forName(envMap("driverClass"))
+//      val conn: Connection = DriverManager.getConnection(envMap("jdbcURL"), envMap("user"), envMap("password"))
+//      val preparedStatement: PreparedStatement = conn.prepareStatement("delete from profiling_tag_size_attr_bot where dt = ?")
+//      preparedStatement.setString(1, yesterday)
+//      preparedStatement.executeUpdate()
+//    })
 
     val prptyTagMap: Map[String, (String, String)] = dataProfilingDao.prptyTagMap
     val classNameToAllowedValues: Map[String, ClassNameAllowedValues] = allowedValuesByClassName(prptyTagMap)
     val specialTagAllowedValues = dataProfilingDao.specialTagValues()
     val dataFrame: DataFrame = dataProfilingDao.profileTagSizeBot(yesterday, classNameToAllowedValues, specialTagAllowedValues)
-    if ("qa".equals(env)){
-      dataFrame.cache()
-      dataFrame.write.mode(SaveMode.Append)
-        .format("jdbc")
-        .option("url", envMap("jdbcURL"))
-        .option("driver", envMap("driverClass"))
-        .option("user", envMap("user"))
-        .option("password", envMap("password"))
-        .option("dbtable", "profiling_tag_size_attr_bot")
-        .save()
-    }
+//    envMapList.foreach(envMap => {
+//      if ("qa".equals(env)){
+//        dataFrame.cache()
+//        dataFrame.write.mode(SaveMode.Append)
+//          .format("jdbc")
+//          .option("url", envMap("jdbcURL"))
+//          .option("driver", envMap("driverClass"))
+//          .option("user", envMap("user"))
+//          .option("password", envMap("password"))
+//          .option("dbtable", "profiling_tag_size_attr_bot")
+//          .save()
+//      }
+//    })
 
     dataProfilingDao.dispatch(dataFrame, env, yesterday, "profiling_tag_size_bot")
+  }
+
+  override def collectPageTagMapping(yesterday: String, env: String = "prod"): Unit = {
+    dataProfilingDao.collectPageTagMapping(yesterday, env)
+  }
+
+  override def collectPageTagMappingBot(yesterday: String, env: String = "prod"): Unit = {
+    dataProfilingDao.collectPageTagMappingBot(yesterday, env)
   }
 }

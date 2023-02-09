@@ -39,6 +39,7 @@ class DataProfilingController extends TController with Loggable{
         val envMap = maybeMap.get
 
         log.info("request: "+ parameters.request)
+        val str = DateTime.parse(yesterday, DateTimeFormat.forPattern("yyyyMMdd")).toString("yyyy-MM-dd")
 
         // do biz
         parameters.request match {
@@ -53,8 +54,11 @@ class DataProfilingController extends TController with Loggable{
             dataProfilingService.dataAnalysis3(negateThirdDay, envMap)
             dataProfilingService.dataAnalysis3(yesterday, envMap)
           case "4" =>
-            dataProfilingService.profileTagSize(DateTime.parse(yesterday, DateTimeFormat.forPattern("yyyyMMdd")).toString("yyyy-MM-dd"), envMap, env)
-            dataProfilingService.profileTagSizeBot(DateTime.parse(yesterday, DateTimeFormat.forPattern("yyyyMMdd")).toString("yyyy-MM-dd"), envMap, env)
+            dataProfilingService.profileTagSize(str, envMap, env)
+            dataProfilingService.profileTagSizeBot(str, envMap, env)
+          case "5" => // page -> tag
+            dataProfilingService.collectPageTagMapping(str, env)
+            dataProfilingService.collectPageTagMappingBot(str, env)
           case _ => System.exit(-1)
         }
       }

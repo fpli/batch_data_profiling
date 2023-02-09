@@ -4,9 +4,10 @@ import com.ebay.dataquality.pojos.ClassNameAllowedValues
 import com.ebay.dataquality.util.{EnvUtil, SpecialTagCheck}
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.scala.DefaultScalaModule
+import org.apache.commons.lang3.time.FastDateFormat
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.expressions.Aggregator
-import org.apache.spark.sql.{DataFrame, Encoder, Encoders, SparkSession, functions}
+import org.apache.spark.sql._
 
 import scala.collection.mutable
 import scala.collection.mutable.ListBuffer
@@ -118,6 +119,44 @@ trait TDao {
     spark.udf.register("tagSizeUDAF", functions.udaf(new TagSizeUDAF(classNameToAllowedValues, specialTagAllowedValues)))
     spark.sql(s"select PAGE_ID, sojlib.soj_nvl(soj, 'app') as app, sojlib.soj_nvl(soj,'efam') as event_family, str_to_map(soj, '&', '=') as sojMap, SESSION_START_DT dt FROM UBI_V.UBI_EVENT_SKEW WHERE SESSION_START_DT = '$yesterday'").createOrReplaceTempView("t1skew")
     spark.sql("select PAGE_ID page_id, app, event_family, tagSizeUDAF(sojMap) as tag_size_attr, dt from t1skew group by dt, PAGE_ID, app, event_family")
+  }
+
+  def collectPageTagMapping(yesterday: String, env: String): Unit = {
+    val spark: SparkSession = EnvUtil.take()
+    spark.conf.set("spark.sql.parquet.enableVectorizedReader", "false")
+    val dataFrame = spark.sql(s"select PAGE_ID, str_to_map(soj, '&', '=') as sojMap, SESSION_START_DT dt FROM UBI_V.UBI_EVENT WHERE SESSION_START_DT = '$yesterday'")
+    val df: Dataset[PageTagMapping] = dataFrame.flatMap(row => {
+      val page_id = row.getInt(0)
+      val date = row.getDate(2)
+      val dt = FastDateFormat.getInstance("yyyy-MM-dd").format(date)
+      val list = new ListBuffer[PageTagMapping]
+      val map = row.getMap[String, String](1)
+      map.foreach {
+        case (key, _) =>
+          list.append(PageTagMapping(page_id, key, "non-bot", dt))
+      }
+      list
+    })(Encoders.product[PageTagMapping]).distinct()
+    df.write.mode(SaveMode.Append).option("path", "hdfs://hercules/sys/edw/working/ubi/ubi_w/tdq/tdq_metadata_page_tag").insertInto("ubi_w.tdq_metadata_page_tag")
+  }
+
+  def collectPageTagMappingBot(yesterday: String, env: String): Unit = {
+    val spark: SparkSession = EnvUtil.take()
+    spark.conf.set("spark.sql.parquet.enableVectorizedReader", "false")
+    val dataFrame = spark.sql(s"select PAGE_ID, str_to_map(soj, '&', '=') as sojMap, SESSION_START_DT dt FROM UBI_V.UBI_EVENT_SKEW WHERE SESSION_START_DT = '$yesterday'")
+    val df: Dataset[PageTagMapping] = dataFrame.flatMap(row => {
+      val page_id = row.getInt(0)
+      val date = row.getDate(2)
+      val dt = FastDateFormat.getInstance("yyyy-MM-dd").format(date)
+      val list = new ListBuffer[PageTagMapping]
+      val map = row.getMap[String, String](1)
+      map.foreach {
+        case (key, _) =>
+          list.append(PageTagMapping(page_id, key, "bot", dt))
+      }
+      list
+    })(Encoders.product[PageTagMapping]).distinct()
+    df.write.mode(SaveMode.Append).option("path", "hdfs://hercules/sys/edw/working/ubi/ubi_w/tdq/tdq_metadata_page_tag").insertInto("ubi_w.tdq_metadata_page_tag")
   }
 
 }
@@ -301,3 +340,5 @@ class TagSizeUDAF(classNameToAllowedValues: Map[String, ClassNameAllowedValues],
 
   override def outputEncoder: Encoder[String] = Encoders.STRING
 }
+
+case class PageTagMapping(page_id: Int, tag_name: String, bot_flag: String, dt: String)
