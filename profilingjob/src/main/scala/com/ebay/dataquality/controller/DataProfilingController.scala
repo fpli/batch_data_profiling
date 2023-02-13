@@ -4,6 +4,8 @@ import com.ebay.dataquality.application.Parameters
 import com.ebay.dataquality.common.TController
 import com.ebay.dataquality.service.DataProfilingService
 import com.ebay.dataquality.util.{EnvUtil, Loggable}
+import org.joda.time.DateTime
+import org.joda.time.format.DateTimeFormat
 
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -15,6 +17,7 @@ class DataProfilingController extends TController with Loggable{
   override def dispatch(option: Option[Parameters]): Unit = {
     val dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd")
     var yesterday = LocalDate.now().minusDays(1).format(dateTimeFormatter)
+    val negateThirdDay = LocalDate.now().minusDays(2).format(dateTimeFormatter)
     var env = "prod"
     try {
       if (option.nonEmpty){
@@ -24,7 +27,6 @@ class DataProfilingController extends TController with Loggable{
         }
         val date = parameters.date
         if (date.nonEmpty){
-          dateTimeFormatter.parse(date)
           yesterday = date
         }
 
@@ -37,6 +39,7 @@ class DataProfilingController extends TController with Loggable{
         val envMap = maybeMap.get
 
         log.info("request: "+ parameters.request)
+        val str = DateTime.parse(yesterday, DateTimeFormat.forPattern("yyyyMMdd")).toString("yyyy-MM-dd")
 
         // do biz
         parameters.request match {
@@ -45,9 +48,17 @@ class DataProfilingController extends TController with Loggable{
           case "1" =>
             dataProfilingService.dataAnalysis1(yesterday, envMap)
           case "2" =>
+            dataProfilingService.dataAnalysis2(negateThirdDay, envMap)
             dataProfilingService.dataAnalysis2(yesterday, envMap)
           case "3" =>
+            dataProfilingService.dataAnalysis3(negateThirdDay, envMap)
             dataProfilingService.dataAnalysis3(yesterday, envMap)
+          case "4" =>
+            dataProfilingService.profileTagSize(str, envMap, env)
+            dataProfilingService.profileTagSizeBot(str, envMap, env)
+          case "5" => // page -> tag
+            dataProfilingService.collectPageTagMapping(str, env)
+            dataProfilingService.collectPageTagMappingBot(str, env)
           case _ => System.exit(-1)
         }
       }
@@ -58,7 +69,5 @@ class DataProfilingController extends TController with Loggable{
     }
 
   }
-
-
 
 }

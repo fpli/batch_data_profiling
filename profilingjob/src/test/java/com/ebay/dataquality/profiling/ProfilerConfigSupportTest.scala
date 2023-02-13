@@ -3,7 +3,14 @@ package com.ebay.dataquality.profiling
 import com.amazon.deequ.analyzers._
 import com.ebay.dataquality.config.params.profiler.{ApproxCountDistinctParameters, ApproxQuantileParameters, CompletenessParameters, MaxLengthParameters, MaximumParameters, MeanParameters, MinLengthParameters, MinimumParameters}
 import com.ebay.dataquality.config.{ExpressionConfig, ProfilerConfig}
+import com.ebay.dataquality.util.SpecialTagCheck.{checkGuid, isTableOrNot, mobileVersionCheck, paginationCheck}
 import com.fasterxml.jackson.core.`type`.TypeReference
+import org.apache.http.HttpHost
+import org.apache.http.auth.{AuthScope, UsernamePasswordCredentials}
+import org.apache.http.impl.client.BasicCredentialsProvider
+import org.apache.http.impl.nio.client.HttpAsyncClientBuilder
+import org.elasticsearch.client.indices.GetIndexRequest
+import org.elasticsearch.client.{RequestOptions, RestClient, RestHighLevelClient}
 
 class ProfilerConfigSupportTest extends org.scalatest.FunSuite {
   test("SizeWithOption") {
@@ -258,5 +265,47 @@ class ProfilerConfigSupportTest extends org.scalatest.FunSuite {
       if (!supportedOp.contains(op))
         throw new IllegalArgumentException(s"unknown profiler operation $op")
     }
+  }
+
+  test("elastic"){
+    val restClientBuilder = RestClient.builder(HttpHost.create("estdq-datalvs.vip.ebay.com"))
+    val basicCredentialsProvider = new BasicCredentialsProvider
+    basicCredentialsProvider.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials("76361a1177564b72bdba1ddb23d17c58", "1tIU7GQSADe4bCGGifWLfYYJSZGA8Szlc3ZWDMnd3gMhk43XPLUpw9Mv5viYQZ73"))
+    restClientBuilder.setHttpClientConfigCallback((httpAsyncClientBuilder: HttpAsyncClientBuilder)=>{
+      httpAsyncClientBuilder.setDefaultCredentialsProvider(basicCredentialsProvider)
+    })
+    val restHighLevelClient = new RestHighLevelClient(restClientBuilder)
+    println(restHighLevelClient)
+    val getIndexRequest = new GetIndexRequest("tdq.prod.metric.normal.2022-04-22")
+    val getIndexResponse = restHighLevelClient.indices().get(getIndexRequest, RequestOptions.DEFAULT)
+    println(getIndexResponse.getAliases)
+    println(getIndexResponse.getMappings)
+    println(getIndexResponse.getSettings)
+
+    restHighLevelClient.close()
+  }
+
+  test("guid"){
+    println(checkGuid("4c91c6cd17d0ad33375d2f29ffe63df5"))
+    println(checkGuid("4c91c6cd17d0ad33375d2f29ffe63df5j"))
+    println(checkGuid("88ca672117e0a7b9dd01a407ffeac177"))
+  }
+
+  test("mobileVersion"){
+    println(mobileVersionCheck("12.12.12"))
+    println(mobileVersionCheck("12x.12.12"))
+  }
+
+  test("icpp"){
+    println(paginationCheck("34"))
+    println(paginationCheck("34c"))
+  }
+
+  test("isTableOrNot"){
+    println(isTableOrNot(null))
+    println(isTableOrNot("12"))
+    println(isTableOrNot(""))
+    println(isTableOrNot("1"))
+    println(isTableOrNot("0"))
   }
 }

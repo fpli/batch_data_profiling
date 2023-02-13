@@ -79,7 +79,6 @@ public class ElasticSearchProfilerResultRepository implements ProfilerResultRepo
             String index = indexTemplatePrefix + calculateIndexDate(result.getFrom());
             IndexRequest request = new IndexRequest(index)
                     .id(genDocId(result))
-                    .type("_doc")
                     .source(ProfilerResult.toJson(result), XContentType.JSON);
 
             bulkRequest.add(request);

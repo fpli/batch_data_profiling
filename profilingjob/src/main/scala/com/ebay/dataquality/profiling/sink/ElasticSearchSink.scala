@@ -9,7 +9,6 @@ import org.apache.http.HttpHost
 import org.apache.http.auth.{AuthScope, UsernamePasswordCredentials}
 import org.apache.http.impl.client.BasicCredentialsProvider
 import org.apache.http.impl.nio.client.HttpAsyncClientBuilder
-import org.elasticsearch.client.RestClientBuilder.HttpClientConfigCallback
 import org.elasticsearch.client.{RestClient, RestHighLevelClient}
 
 import scala.collection.JavaConverters._
@@ -31,10 +30,8 @@ class ElasticSearchSink extends BatchSink[ElasticSearchSinkConfig] with Loggable
       credentialsProvider.setCredentials(AuthScope.ANY,
         new UsernamePasswordCredentials(this.getConfig.username, this.getConfig.password))
 
-      restClientBuilder.setHttpClientConfigCallback(new HttpClientConfigCallback {
-        override def customizeHttpClient(httpAsyncClientBuilder: HttpAsyncClientBuilder): HttpAsyncClientBuilder = {
-          httpAsyncClientBuilder.setDefaultCredentialsProvider(credentialsProvider)
-        }
+      restClientBuilder.setHttpClientConfigCallback((httpAsyncClientBuilder: HttpAsyncClientBuilder) => {
+        httpAsyncClientBuilder.setDefaultCredentialsProvider(credentialsProvider)
       })
     }
 

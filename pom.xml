@@ -253,54 +253,53 @@
         </profile>
     </profiles>
 
-
-    <repositories>
-        <repository>
-            <id>ebaycentral-release</id>
-            <url>http://ebaycentral.qa.ebay.com/content/repositories/releases/</url>
-        </repository>
-        <repository>
-            <id>ebaycentral-snapshots</id>
-            <url>http://ebaycentral.qa.ebay.com/content/repositories/snapshots/</url>
-        </repository>
-        <repository>
-            <id>raptor-thirdparty</id>
-            <url>https://ebaycentral.corp.ebay.com/content/repositories/thirdparty</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>apache.snapshots</id>
-            <name>Apache Development Snapshot Repository</name>
-            <url>https://repository.apache.org/content/repositories/snapshots/</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>OttoGroup</id>
-            <name>OttoGroup</name>
-            <url>https://dl.bintray.com/ottogroup/maven/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>mvnrepository_id</id>
-            <name>mvnrepository.com</name>
-            <url>https://repo1.maven.org/maven2/</url>
-        </repository>
-    </repositories>
+<!--    <repositories>-->
+<!--        <repository>-->
+<!--            <id>ebaycentral-release</id>-->
+<!--            <url>http://ebaycentral.qa.ebay.com/content/repositories/releases/</url>-->
+<!--        </repository>-->
+<!--        <repository>-->
+<!--            <id>ebaycentral-snapshots</id>-->
+<!--            <url>http://ebaycentral.qa.ebay.com/content/repositories/snapshots/</url>-->
+<!--        </repository>-->
+<!--        <repository>-->
+<!--            <id>raptor-thirdparty</id>-->
+<!--            <url>https://ebaycentral.corp.ebay.com/content/repositories/thirdparty</url>-->
+<!--            <releases>-->
+<!--                <enabled>true</enabled>-->
+<!--            </releases>-->
+<!--            <snapshots>-->
+<!--                <enabled>false</enabled>-->
+<!--            </snapshots>-->
+<!--        </repository>-->
+<!--        <repository>-->
+<!--            <id>apache.snapshots</id>-->
+<!--            <name>Apache Development Snapshot Repository</name>-->
+<!--            <url>https://repository.apache.org/content/repositories/snapshots/</url>-->
+<!--            <releases>-->
+<!--                <enabled>false</enabled>-->
+<!--            </releases>-->
+<!--            <snapshots>-->
+<!--                <enabled>true</enabled>-->
+<!--            </snapshots>-->
+<!--        </repository>-->
+<!--        <repository>-->
+<!--            <id>OttoGroup</id>-->
+<!--            <name>OttoGroup</name>-->
+<!--            <url>https://dl.bintray.com/ottogroup/maven/</url>-->
+<!--            <releases>-->
+<!--                <enabled>true</enabled>-->
+<!--            </releases>-->
+<!--            <snapshots>-->
+<!--                <enabled>true</enabled>-->
+<!--            </snapshots>-->
+<!--        </repository>-->
+<!--        <repository>-->
+<!--            <id>mvnrepository_id</id>-->
+<!--            <name>mvnrepository.com</name>-->
+<!--            <url>https://repo1.maven.org/maven2/</url>-->
+<!--        </repository>-->
+<!--    </repositories>-->
 
     <distributionManagement>
         <snapshotRepository>

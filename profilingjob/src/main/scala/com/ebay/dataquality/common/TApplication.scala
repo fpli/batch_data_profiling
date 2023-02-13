@@ -7,8 +7,11 @@ import org.apache.spark.sql.SparkSession
 trait TApplication {
 
   def start(master:String = "local[*]", app:String = "Application")( op : => Unit ): Unit = {
-    val sparConf = new SparkConf().setMaster(master).setAppName(app)
-    val sparkSession = SparkSession.builder().enableHiveSupport().config(sparConf).getOrCreate()
+    val sparkConf = new SparkConf().setMaster(master).setAppName(app)
+    val sparkSession = SparkSession.builder()
+      .config("spark.sql.sources.partitionOverwriteMode", "dynamic")
+      .config("hive.exec.dynamic.partition.mode", "nonstrict")
+      .enableHiveSupport().config(sparkConf).getOrCreate()
     EnvUtil.put(sparkSession)
 
     try {
