@@ -26,7 +26,7 @@
         <scala-212.major.version>2.12</scala-212.major.version>
         <scala.major.version>${scala-212.major.version}</scala.major.version>
         <scala.version>${scala.major.version}.17</scala.version>
-        <scala-maven-plugin.version>4.3.0</scala-maven-plugin.version>
+        <scala-maven-plugin.version>4.4.0</scala-maven-plugin.version>
 
         <!-- Spark -->
         <spark.major.version>3.1</spark.major.version>
