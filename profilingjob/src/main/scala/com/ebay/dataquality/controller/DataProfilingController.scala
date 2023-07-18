@@ -63,6 +63,12 @@ class DataProfilingController extends TController with Loggable{
           case "5" => // page -> tag
             dataProfilingService.collectPageTagMapping(str, env)
             dataProfilingService.collectPageTagMappingBot(str, env)
+          case "6" =>
+            dataProfilingService.collectPageModuleMapping(str, env)
+          case "7" =>
+            dataProfilingService.collectPageClickMapping(str, env)
+          case "8" => // bot consistency gap detection
+            dataProfilingService.collectBotConsistencyGap(str, envMap)
           case _ => System.exit(-1)
         }
       }

@@ -159,6 +159,93 @@ trait TDao {
     df.write.mode(SaveMode.Append).option("path", "hdfs://hercules/sys/edw/working/ubi/ubi_w/tdq/tdq_metadata_page_tag").insertInto("ubi_w.tdq_metadata_page_tag")
   }
 
+  def collectPageModuleMapping(yesterday: String, env: String): Unit = {
+    val spark: SparkSession = EnvUtil.take()
+
+    val sql =
+      s"""
+        | select
+        |   cast(
+        |     case
+        |       when sojlib.soj_nvl(soj, 'sid') like 'p%' then str_to_map(sojlib.soj_nvl(soj, 'sid'), '\\.', '') ['p']
+        |       else null
+        |     end as bigint
+        |   ) as page_id,
+        |   cast(
+        |     case
+        |       when sojlib.soj_nvl(soj, 'moduledtl') like '%mi:%' then str_to_map(sojlib.soj_nvl(soj, 'moduledtl'), '\\|', ':') ['mi']
+        |       when cast(
+        |         regexp_replace(sojlib.soj_nvl(soj, 'moduledtl'), '[^0-9.]', '') as double
+        |       ) = sojlib.soj_nvl(soj, 'moduledtl') then sojlib.soj_nvl(soj, 'moduledtl')
+        |       when sojlib.soj_nvl(soj, 'sid') like '%.m%' then str_to_map(sojlib.soj_nvl(soj, 'sid'), '\\.', '') ['m']
+        |       else null
+        |     end as bigint
+        |   ) as module_id,
+        |   SESSION_START_DT dt
+        | from
+        |   UBI_V.UBI_EVENT
+        | where
+        |   sojlib.soj_nvl(soj, 'eactn') in ("EXPM", "VIEW", "VIEWDTLS")
+        |   and SESSION_START_DT = '$yesterday'
+        |   and page_id in (
+        |     select
+        |       PAGE_ID
+        |     from
+        |       ACCESS_VIEWS.PAGES
+        |     WHERE
+        |       PAGE_FMLY4_NAME in ("GR", "GR-1")
+        |   )
+        | group by 1, 2, 3
+        |""".stripMargin
+
+    val dataFrame = spark.sql(sql)
+    dataFrame.printSchema()
+    println(dataFrame.count())
+    dataFrame.collect().foreach(row => {
+      println(row.get(0) + ", " + row.get(1) + ", " + row.get(2))
+    })
+
+    dataFrame.write.mode(SaveMode.Append).option("path", "hdfs://hercules/sys/edw/working/ubi/ubi_w/tdq/tdq_metadata_page_module").insertInto("ubi_w.tdq_metadata_page_module")
+  }
+
+  def collectPageClickMapping(yesterday: String, env: String): Unit = {
+    val spark: SparkSession = EnvUtil.take()
+    val sql =
+      s"""
+        | insert into table `ubi_w`.`tdq_metadata_page_click` partition(dt = "$yesterday")
+        | select
+        |   cast(
+        |     case
+        |       when sojlib.soj_nvl(soj, 'sid') like 'p%' then str_to_map(sojlib.soj_nvl(soj, 'sid'), '\\.', '') ['p']
+        |       else null
+        |     end as bigint
+        |   ) as page_id,
+        |   cast(
+        |     case
+        |       when sojlib.soj_nvl(soj, 'sid') like '%.l%' then str_to_map(sojlib.soj_nvl(soj, 'sid'), '\\.', '') ['l']
+        |       when sojlib.soj_nvl(soj, 'moduledtl') like '%|li:%' then str_to_map(sojlib.soj_nvl(soj, 'moduledtl'), '\\|', ':') ['li']
+        |       else null
+        |     end as bigint
+        |   ) as click_id
+        | from
+        |   UBI_V.UBI_EVENT
+        | where
+        |   sojlib.soj_nvl(soj, 'sid') like 'p%m%l%'
+        |   and SESSION_START_DT = "$yesterday"
+        |   and page_id in (
+        |     select
+        |       PAGE_ID
+        |     from
+        |       ACCESS_VIEWS.PAGES
+        |     WHERE
+        |       PAGE_FMLY4_NAME in ("GR", "GR-1")
+        |   )
+        |   group by 1, 2
+        |""".stripMargin
+
+    spark.sql(sql)
+  }
+
 }
 
 /**
@@ -342,3 +429,6 @@ class TagSizeUDAF(classNameToAllowedValues: Map[String, ClassNameAllowedValues],
 }
 
 case class PageTagMapping(page_id: Int, tag_name: String, bot_flag: String, dt: String)
+
+case class PageModuleMapping(page_id: Int, module_id: Long, dt: String)
+case class PageClickMapping(page_id: Int, click_id: Long, dt: String)

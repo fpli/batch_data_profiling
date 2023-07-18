@@ -109,6 +109,10 @@ class DataProfilingService extends TService {
     })
   }
 
+  override def collectBotConsistencyGap(str: String, envMap: List[Map[String, String]]): Any = {
+
+  }
+
   override def profileTagSize(yesterday: String, envMapList: List[Map[String, String]], env: String = "prod"): Any = {
 //    envMapList.foreach(envMap => {
 //      Class.forName(envMap("driverClass"))
@@ -201,5 +205,13 @@ class DataProfilingService extends TService {
 
   override def collectPageTagMappingBot(yesterday: String, env: String = "prod"): Unit = {
     dataProfilingDao.collectPageTagMappingBot(yesterday, env)
+  }
+
+  override def collectPageModuleMapping(yesterday: String, env: String = "prod"): Unit = {
+    dataProfilingDao.collectPageModuleMapping(yesterday, env)
+  }
+
+  override def collectPageClickMapping(yesterday: String, env: String): Unit = {
+    dataProfilingDao.collectPageClickMapping(yesterday, env)
   }
 }
