@@ -42,7 +42,7 @@
         <elasticsearch.version>7.5.1</elasticsearch.version>
         <apache.common.version>3.12.0</apache.common.version>
         <!-- by default dont' deploy modules to repo, set it to 'false' in submodule pom.xml if it should be deployed. -->
-        <maven.deploy.skip>true</maven.deploy.skip>
+        <maven.deploy.skip>false</maven.deploy.skip>
         <spark.jar.scope>compile</spark.jar.scope>
         <maven-surefire-plugin.version>2.22.0</maven-surefire-plugin.version>
         <maven-failsafe-plugin.version>2.22.0</maven-failsafe-plugin.version>
