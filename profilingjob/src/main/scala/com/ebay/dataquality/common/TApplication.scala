@@ -8,7 +8,12 @@ trait TApplication {
 
   def start(master:String = "local[*]", app:String = "Application")( op : => Unit ): Unit = {
     val sparkConf = new SparkConf().setMaster(master).setAppName(app)
-    val sparkSession = SparkSession.builder().enableHiveSupport().config(sparkConf).getOrCreate()
+    val sparkSession = SparkSession.builder()
+      .config("hive.exec.dynamic.partition", "dynamic")
+      .config("hive.exec.dynamic.partition.mode", "nonstrict")
+      // hive.exec.dynamic.partition.mode
+      // hive.exec.dynamic.partition
+      .enableHiveSupport().config(sparkConf).getOrCreate()
     EnvUtil.put(sparkSession)
 
     try {

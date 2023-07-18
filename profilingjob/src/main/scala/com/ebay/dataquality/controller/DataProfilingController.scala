@@ -17,7 +17,7 @@ class DataProfilingController extends TController with Loggable{
   override def dispatch(option: Option[Parameters]): Unit = {
     val dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd")
     var yesterday = LocalDate.now().minusDays(1).format(dateTimeFormatter)
-    val negateThirdDay = LocalDate.now().minusDays(2).format(dateTimeFormatter)
+    var negateThirdDay = LocalDate.now().minusDays(2).format(dateTimeFormatter)
     var env = "prod"
     try {
       if (option.nonEmpty){
@@ -27,7 +27,11 @@ class DataProfilingController extends TController with Loggable{
         }
         val date = parameters.date
         if (date.nonEmpty){
-          yesterday = date
+          val t = LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyyMMddHHmmss"))
+          if (t.isBefore(LocalDate.now().minusDays(1))) {
+            yesterday = t.format(dateTimeFormatter)
+            negateThirdDay = t.minusDays(1).format(dateTimeFormatter)
+          }
         }
 
         env = parameters.env
@@ -39,6 +43,7 @@ class DataProfilingController extends TController with Loggable{
         val envMap = maybeMap.get
 
         log.info("request: "+ parameters.request)
+        val str = DateTime.parse(yesterday, DateTimeFormat.forPattern("yyyyMMdd")).toString("yyyy-MM-dd")
 
         // do biz
         parameters.request match {
@@ -53,8 +58,17 @@ class DataProfilingController extends TController with Loggable{
             dataProfilingService.dataAnalysis3(negateThirdDay, envMap)
             dataProfilingService.dataAnalysis3(yesterday, envMap)
           case "4" =>
-            dataProfilingService.profileTagSize(DateTime.parse(yesterday, DateTimeFormat.forPattern("yyyyMMdd")).toString("yyyy-MM-dd"), envMap, env)
-            dataProfilingService.profileTagSizeBot(DateTime.parse(yesterday, DateTimeFormat.forPattern("yyyyMMdd")).toString("yyyy-MM-dd"), envMap, env)
+            dataProfilingService.profileTagSize(str, envMap, env)
+            dataProfilingService.profileTagSizeBot(str, envMap, env)
+          case "5" => // page -> tag
+            dataProfilingService.collectPageTagMapping(str, env)
+            dataProfilingService.collectPageTagMappingBot(str, env)
+          case "6" =>
+            dataProfilingService.collectPageModuleMapping(str, env)
+          case "7" =>
+            dataProfilingService.collectPageClickMapping(str, env)
+          case "8" => // bot consistency gap detection
+            dataProfilingService.collectBotConsistencyGap(str, envMap)
           case _ => System.exit(-1)
         }
       }
