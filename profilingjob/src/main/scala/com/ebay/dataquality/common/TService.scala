@@ -17,4 +17,10 @@ trait TService {
   def collectPageTagMapping(yesterday: String, env: String = "prod"): Unit
   def collectPageTagMappingBot(yesterday: String, env: String = "prod"): Unit
 
+  def collectPageModuleMapping(yesterday: String, env: String = "prod"): Unit
+
+  def collectPageClickMapping(yesterday: String, env: String = "prod"): Unit
+
+  def collectBotConsistencyGap(yesterday: String, envMap: List[Map[String, String]]): Any
+
 }
