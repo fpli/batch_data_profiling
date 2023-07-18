@@ -301,10 +301,20 @@
 <!--        </repository>-->
 <!--    </repositories>-->
 
+<!--    <distributionManagement>-->
+<!--        <snapshotRepository>-->
+<!--            <id>ebay-qa-server</id>-->
+<!--            <url>https://ebaycentral.qa.ebay.com/content/repositories/snapshots</url>-->
+<!--        </snapshotRepository>-->
+<!--    </distributionManagement>-->
     <distributionManagement>
+        <repository>
+            <id>raptor.releases</id>
+            <url>https://ebaycentral.qa.ebay.com/content/repositories/releases/</url>
+        </repository>
         <snapshotRepository>
-            <id>ebay-qa-server</id>
-            <url>https://ebaycentral.qa.ebay.com/content/repositories/snapshots</url>
+            <id>raptor.snapshots</id>
+            <url>https://ebaycentral.qa.ebay.com/content/repositories/snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
 </project>
