@@ -25,8 +25,8 @@
         <!-- Scala -->
         <scala-212.major.version>2.12</scala-212.major.version>
         <scala.major.version>${scala-212.major.version}</scala.major.version>
-        <scala.version>${scala.major.version}.10</scala.version>
-        <scala-maven-plugin.version>4.4.0</scala-maven-plugin.version>
+        <scala.version>${scala.major.version}.17</scala.version>
+        <scala-maven-plugin.version>4.3.0</scala-maven-plugin.version>
 
         <!-- Spark -->
         <spark.major.version>3.1</spark.major.version>
@@ -228,7 +228,7 @@
                 <spark.major.version>3.1</spark.major.version>
                 <spark.version>${spark-31.version}</spark.version>
                 <scala.major.version>${scala-212.major.version}</scala.major.version>
-                <scala.version>${scala.major.version}.10</scala.version>
+                <scala.version>${scala.major.version}.17</scala.version>
             </properties>
         </profile>
         <profile>
@@ -237,7 +237,7 @@
                 <spark.major.version>3.1</spark.major.version>
                 <spark.version>${spark-31.version}</spark.version>
                 <scala.major.version>${scala-212.major.version}</scala.major.version>
-                <scala.version>${scala.major.version}.10</scala.version>
+                <scala.version>${scala.major.version}.17</scala.version>
                 <spark.jar.scope>provided</spark.jar.scope>
             </properties>
         </profile>
@@ -247,7 +247,7 @@
                 <spark.major.version>3.1</spark.major.version>
                 <spark.version>${spark-31.version}</spark.version>
                 <scala.major.version>${scala-212.major.version}</scala.major.version>
-                <scala.version>${scala.major.version}.10</scala.version>
+                <scala.version>${scala.major.version}.17</scala.version>
                 <spark.jar.scope>compile</spark.jar.scope>
             </properties>
         </profile>
