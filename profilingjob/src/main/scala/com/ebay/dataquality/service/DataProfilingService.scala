@@ -12,56 +12,7 @@ class DataProfilingService extends TService {
 
   private val dataProfilingDao = new DataProfilingDao
 
-  override def dataAnalysis(yesterday: String, envMapList: List[Map[String, String]]): Any = {
-    envMapList.foreach(envMap => {
-      // clean up if necessary
-      Class.forName(envMap("driverClass"))
-      val conn: Connection = DriverManager.getConnection(envMap("jdbcURL"), envMap("user"), envMap("password"))
-      val preparedStatement: PreparedStatement = conn.prepareStatement("delete from ubi_event_page where DT = ?")
-      preparedStatement.setString(1, yesterday)
-      preparedStatement.executeUpdate()
-    })
-
-    val dataFrame: DataFrame = dataProfilingDao.executeSparkSQL(s"select PAGEID, count(*) total, DT from UBI_T.UBI_EVENT where DT = '${yesterday}' GROUP BY DT, PAGEID")
-
-    envMapList.foreach(envMap => {
-      // 保存数据
-      dataFrame.write.mode(SaveMode.Append)
-        .format("jdbc")
-        .option("url", envMap("jdbcURL"))
-        .option("driver", envMap("driverClass"))
-        .option("user", envMap("user"))
-        .option("password", envMap("password"))
-        .option("dbtable", "ubi_event_page")
-        .save()
-    })
-  }
-
-  override def dataAnalysis1(yesterday: String, envMapList: List[Map[String, String]]): Any = {
-    envMapList.foreach(envMap => {
-      // clean up if necessary
-      Class.forName(envMap("driverClass"))
-      val conn: Connection = DriverManager.getConnection(envMap("jdbcURL"), envMap("user"), envMap("password"))
-      val preparedStatement: PreparedStatement = conn.prepareStatement("delete from ubi_event_page_bot where DT = ?")
-      preparedStatement.setString(1, yesterday)
-      preparedStatement.executeUpdate()
-    })
-
-    val dataFrame: DataFrame = dataProfilingDao.executeSparkSQL(s"select PAGEID, count(*) total, DT from UBI_T.UBI_EVENT_SKEW where DT = '${yesterday}' GROUP BY DT, PAGEID")
-    envMapList.foreach(envMap => {
-      // 保存数据
-      dataFrame.write.mode(SaveMode.Append)
-        .format("jdbc")
-        .option("url", envMap("jdbcURL"))
-        .option("driver", envMap("driverClass"))
-        .option("user", envMap("user"))
-        .option("password", envMap("password"))
-        .option("dbtable", "ubi_event_page_bot")
-        .save()
-    })
-  }
-
-  override def dataAnalysis2(yesterday: String, envMapList: List[Map[String, String]]): Any = {
+  override def profilingPageCountNonBot(yesterday: String, envMapList: List[Map[String, String]]): Any = {
     envMapList.foreach(envMap => {
       // clean up if necessary
       Class.forName(envMap("driverClass"))
@@ -85,7 +36,7 @@ class DataProfilingService extends TService {
     })
   }
 
-  override def dataAnalysis3(yesterday: String, envMapList: List[Map[String, String]]): Any = {
+  override def profilingPageCountBot(yesterday: String, envMapList: List[Map[String, String]]): Any = {
     envMapList.foreach(envMap => {
       // clean up if necessary
       Class.forName(envMap("driverClass"))
@@ -107,10 +58,6 @@ class DataProfilingService extends TService {
         .option("dbtable", "profiling_page_count_bot")
         .save()
     })
-  }
-
-  override def collectBotConsistencyGap(str: String, envMap: List[Map[String, String]]): Any = {
-
   }
 
   override def profileTagSize(yesterday: String, envMapList: List[Map[String, String]], env: String = "prod"): Any = {
@@ -199,19 +146,4 @@ class DataProfilingService extends TService {
     dataProfilingDao.dispatch(dataFrame, env, yesterday, "profiling_tag_size_bot")
   }
 
-  override def collectPageTagMapping(yesterday: String, env: String = "prod"): Unit = {
-    dataProfilingDao.collectPageTagMapping(yesterday, env)
-  }
-
-  override def collectPageTagMappingBot(yesterday: String, env: String = "prod"): Unit = {
-    dataProfilingDao.collectPageTagMappingBot(yesterday, env)
-  }
-
-  override def collectPageModuleMapping(yesterday: String, env: String = "prod"): Unit = {
-    dataProfilingDao.collectPageModuleMapping(yesterday, env)
-  }
-
-  override def collectPageClickMapping(yesterday: String, env: String): Unit = {
-    dataProfilingDao.collectPageClickMapping(yesterday, env)
-  }
 }

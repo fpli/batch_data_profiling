@@ -28,9 +28,9 @@ object EnvUtil {
   ))
 
   private val requestMap: Map[String, String] = Map(
-    "0" -> "page_nonBot",
-    "1" -> "page_bot",
-    "2" -> ""
+    "0" -> "profiling page count on ubi_event",
+    "1" -> "profiling page count on ubi_event_skew",
+    "2" -> "profiling tag size on ubi_event and ubi_event_skew",
   )
 
   def put(sparkSession: SparkSession): Unit = {
@@ -49,4 +49,7 @@ object EnvUtil {
     envMap.get(env)
   }
 
+  def getRequest(request: String) = {
+    requestMap.get(request)
+  }
 }

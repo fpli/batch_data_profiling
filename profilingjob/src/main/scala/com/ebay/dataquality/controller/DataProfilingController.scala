@@ -43,32 +43,19 @@ class DataProfilingController extends TController with Loggable{
         val envMap = maybeMap.get
 
         log.info("request: "+ parameters.request)
-        val str = DateTime.parse(yesterday, DateTimeFormat.forPattern("yyyyMMdd")).toString("yyyy-MM-dd")
 
         // do biz
         parameters.request match {
           case "0" =>
-            dataProfilingService.dataAnalysis(yesterday, envMap)
+            dataProfilingService.profilingPageCountNonBot(negateThirdDay, envMap)
+            dataProfilingService.profilingPageCountNonBot(yesterday, envMap)
           case "1" =>
-            dataProfilingService.dataAnalysis1(yesterday, envMap)
+            dataProfilingService.profilingPageCountBot(negateThirdDay, envMap)
+            dataProfilingService.profilingPageCountBot(yesterday, envMap)
           case "2" =>
-            dataProfilingService.dataAnalysis2(negateThirdDay, envMap)
-            dataProfilingService.dataAnalysis2(yesterday, envMap)
-          case "3" =>
-            dataProfilingService.dataAnalysis3(negateThirdDay, envMap)
-            dataProfilingService.dataAnalysis3(yesterday, envMap)
-          case "4" =>
+            val str = DateTime.parse(yesterday, DateTimeFormat.forPattern("yyyyMMdd")).toString("yyyy-MM-dd")
             dataProfilingService.profileTagSize(str, envMap, env)
             dataProfilingService.profileTagSizeBot(str, envMap, env)
-          case "5" => // page -> tag
-            dataProfilingService.collectPageTagMapping(str, env)
-            dataProfilingService.collectPageTagMappingBot(str, env)
-          case "6" =>
-            dataProfilingService.collectPageModuleMapping(str, env)
-          case "7" =>
-            dataProfilingService.collectPageClickMapping(str, env)
-          case "8" => // bot consistency gap detection
-            dataProfilingService.collectBotConsistencyGap(str, envMap)
           case _ => System.exit(-1)
         }
       }

@@ -2,13 +2,14 @@ package com.ebay.dataquality.application
 
 import com.ebay.dataquality.common.TApplication
 import com.ebay.dataquality.controller.DataProfilingController
+import com.ebay.dataquality.util.EnvUtil
 import scopt.{OParser, OParserBuilder}
 
 object DataProfilingApplication extends TApplication {
 
   private val builder: OParserBuilder[Parameters] = OParser.builder[Parameters]
 
-  val parser = {
+  private val parser = {
     import builder._
     OParser.sequence(
       programName("DataProfilingApplication"),
@@ -21,7 +22,7 @@ object DataProfilingApplication extends TApplication {
       opt[String]('t', "date")
         .optional()
         .action((n, c) => c.copy(date = n))
-        .text("which day to run, e.g: '20220205'"),
+        .text("which day to run, e.g: '20220205000000'"),
 
       opt[String]('e', "env")
         .optional()
@@ -31,7 +32,7 @@ object DataProfilingApplication extends TApplication {
       opt[String]('r', "request")
         .optional()
         .action((n, c) => c.copy(request = n))
-        .text("which request to perforce")
+        .text("which request to perform")
     )
   }
 
@@ -45,8 +46,11 @@ object DataProfilingApplication extends TApplication {
   def main(args: Array[String]): Unit = {
 
     val maybeParameters = parse(args)
-
-    start("yarn", "DataProfilingApplication"){
+    if (maybeParameters.isEmpty) {
+      println("parse error: please check the input parameters: " + args.mkString(","))
+      System.exit(-1)
+    }
+    start("yarn", EnvUtil.getRequest(maybeParameters.get.request).getOrElse("DataProfilingApplication")){
       val dataProfilingController = new DataProfilingController
       dataProfilingController.dispatch(maybeParameters)
     }
