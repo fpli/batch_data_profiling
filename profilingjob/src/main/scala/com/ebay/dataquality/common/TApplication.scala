@@ -6,7 +6,7 @@ import org.apache.spark.sql.SparkSession
 
 trait TApplication {
 
-  def start(master:String = "local[*]", app:String = "Application")( op : => Unit ): Unit = {
+  def start(master:String = "local[*]", app:String = "Application")(op : => Unit ): Unit = {
     val sparkConf = new SparkConf().setMaster(master).setAppName(app)
     val sparkSession = SparkSession.builder()
       .config("hive.exec.dynamic.partition", "dynamic")
@@ -19,7 +19,7 @@ trait TApplication {
     try {
       op
     } catch {
-      case ex => println(ex.getMessage)
+      case ex: Exception => println(ex.getMessage)
     }
 
     sparkSession.stop()
