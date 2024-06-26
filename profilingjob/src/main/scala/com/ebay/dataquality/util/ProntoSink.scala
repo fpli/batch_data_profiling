@@ -14,7 +14,7 @@ object ProntoSink {
     if (restHighLevelClient == null){
       val restClientBuilder: RestClientBuilder = RestClient.builder(new HttpHost("estdq-datalvs.vip.ebay.com", 443, "https"))
       val basicCredentialsProvider = new BasicCredentialsProvider
-      basicCredentialsProvider.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials("76361a1177564b72bdba1ddb23d17c58", "1tIU7GQSADe4bCGGifWLfYYJSZGA8Szlc3ZWDMnd3gMhk43XPLUpw9Mv5viYQZ73"))
+      basicCredentialsProvider.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials("a7ecbf77bfd342d39021bcf49f380712", "pnAizAXbooCk76Ro6werhjOms1FgVFBRBX0aN6PEI7cy5AGr1o6jgKCvOdLOkScw"))
       restClientBuilder.setHttpClientConfigCallback((httpAsyncClientBuilder: HttpAsyncClientBuilder)=>{
         httpAsyncClientBuilder.setDefaultCredentialsProvider(basicCredentialsProvider)
       })
