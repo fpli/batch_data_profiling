@@ -28,9 +28,9 @@ object EnvUtil {
   ))
 
   private val requestMap: Map[String, String] = Map(
-    "0" -> "profiling page count on ubi_event",
-    "1" -> "profiling page count on ubi_event_skew",
-    "2" -> "profiling tag size on ubi_event and ubi_event_skew",
+    "2" -> "profiling page count on ubi_event",
+    "3" -> "profiling page count on ubi_event_skew",
+    "4" -> "profiling tag size on ubi_event and ubi_event_skew",
   )
 
   def put(sparkSession: SparkSession): Unit = {

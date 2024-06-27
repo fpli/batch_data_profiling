@@ -46,17 +46,17 @@ class DataProfilingController extends TController with Loggable{
 
         // do biz
         parameters.request match {
-          case "0" =>
+          case "2" =>
             dataProfilingService.profilingPageCountNonBot(negateThirdDay, envMap)
             dataProfilingService.profilingPageCountNonBot(yesterday, envMap)
-          case "1" =>
+          case "3" =>
             dataProfilingService.profilingPageCountBot(negateThirdDay, envMap)
             dataProfilingService.profilingPageCountBot(yesterday, envMap)
-          case "2" =>
+          case "4" =>
             val str = DateTime.parse(yesterday, DateTimeFormat.forPattern("yyyyMMdd")).toString("yyyy-MM-dd")
             dataProfilingService.profileTagSize(str, envMap, env)
             dataProfilingService.profileTagSizeBot(str, envMap, env)
-          case _ => System.exit(-1)
+          case _ => System.exit(0)
         }
       }
     } catch {
